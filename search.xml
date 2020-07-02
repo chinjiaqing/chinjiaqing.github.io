@@ -87,10 +87,26 @@
 </li>
 </ul>
 ]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
       <tags>
         <tag>JavaScript</tag>
         <tag>JavaScript高级程序设计</tag>
         <tag>笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Win10使用Docker部署OnlyOffice</title>
+    <url>/2020/07/02/Win10%E4%BD%BF%E7%94%A8Docker%E9%83%A8%E7%BD%B2Onlyoffice/</url>
+    <content><![CDATA[<ul>
+<li>安装docker</li>
+<li>拉取镜像<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker pull onlyoffice/documentserver</span><br></pre></td></tr></table></figure></li>
+<li>启动服务<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker run -i -t -d -p 8072:80 onlyoffice/documentserver</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>onlyoffice</tag>
       </tags>
   </entry>
   <entry>
@@ -110,18 +126,5 @@
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 ]]></content>
-  </entry>
-  <entry>
-    <title>Win10使用Docker部署OnlyOffice</title>
-    <url>/2020/07/02/Win10%E4%BD%BF%E7%94%A8Docker%E9%83%A8%E7%BD%B2Onlyoffice/</url>
-    <content><![CDATA[<ul>
-<li>安装docker</li>
-<li>拉取镜像<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker pull onlyoffice/documentserver</span><br></pre></td></tr></table></figure></li>
-<li>启动服务<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker run -i -t -d -p 8072:80 onlyoffice/documentserver</span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>onlyoffice</tag>
-      </tags>
   </entry>
 </search>
