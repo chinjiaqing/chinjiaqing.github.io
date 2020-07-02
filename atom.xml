@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://chinjiaqing.github.io/"/>
-  <updated>2020-07-02T03:20:08.211Z</updated>
+  <updated>2020-07-02T07:38:16.423Z</updated>
   <id>https://chinjiaqing.github.io/</id>
   
   <author>
@@ -17,11 +17,38 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Win10使用Docker部署Onlyoffice</title>
+    <link href="https://chinjiaqing.github.io/2020/07/02/Win10%E4%BD%BF%E7%94%A8Docker%E9%83%A8%E7%BD%B2Onlyoffice/"/>
+    <id>https://chinjiaqing.github.io/2020/07/02/Win10%E4%BD%BF%E7%94%A8Docker%E9%83%A8%E7%BD%B2Onlyoffice/</id>
+    <published>2020-07-02T07:36:27.000Z</published>
+    <updated>2020-07-02T07:38:16.423Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;ul&gt;
+&lt;li&gt;安装docker&lt;/li&gt;
+&lt;li&gt;拉取镜像&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="onlyoffice" scheme="https://chinjiaqing.github.io/tags/onlyoffice/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Hello World</title>
     <link href="https://chinjiaqing.github.io/2020/07/01/hello-world/"/>
     <id>https://chinjiaqing.github.io/2020/07/01/hello-world/</id>
     <published>2020-07-01T07:06:33.096Z</published>
-    <updated>2020-07-02T03:20:08.211Z</updated>
+    <updated>2020-07-02T07:36:39.796Z</updated>
     
     <summary type="html">
     

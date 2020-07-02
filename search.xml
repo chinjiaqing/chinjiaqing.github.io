@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Win10使用Docker部署Onlyoffice</title>
+    <url>/2020/07/02/Win10%E4%BD%BF%E7%94%A8Docker%E9%83%A8%E7%BD%B2Onlyoffice/</url>
+    <content><![CDATA[<ul>
+<li>安装docker</li>
+<li>拉取镜像<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker pull onlyoffice/documentserver</span><br></pre></td></tr></table></figure></li>
+<li>启动服务<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker run -i -t -d -p 8072:80 onlyoffice/documentserver</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>onlyoffice</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/2020/07/01/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
