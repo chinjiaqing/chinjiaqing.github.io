@@ -5,9 +5,9 @@
   <subtitle>ChinJiaqing的个人博客</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="https://chinjiaqing.github.io/"/>
   <updated>2020-07-02T03:20:08.211Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>https://chinjiaqing.github.io/</id>
   
   <author>
     <name>季夏拾陆</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="http://yoursite.com/2020/07/01/hello-world/"/>
-    <id>http://yoursite.com/2020/07/01/hello-world/</id>
+    <link href="https://chinjiaqing.github.io/2020/07/01/hello-world/"/>
+    <id>https://chinjiaqing.github.io/2020/07/01/hello-world/</id>
     <published>2020-07-01T07:06:33.096Z</published>
     <updated>2020-07-02T03:20:08.211Z</updated>
     
