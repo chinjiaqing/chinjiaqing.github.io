@@ -1407,6 +1407,11 @@ img {
   height: 100%;
   margin-top: 0;
 }
+.article-entry .article-more-link {
+  display: block;
+  width: fit-content;
+  margin: 0 auto;
+}
 .article-header {
   position: relative;
 }
