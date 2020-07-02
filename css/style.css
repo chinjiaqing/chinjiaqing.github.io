@@ -1642,6 +1642,7 @@ a.toc-link {
 .article-gallery-img {
   display: none;
   max-width: 100%;
+  text-align: left;
 }
 .article-gallery-img:first-child {
   display: block;
@@ -1651,8 +1652,10 @@ a.toc-link {
   display: block;
 }
 .article-gallery-img img {
-  display: block;
+  display: inline-block;
   max-width: 100%;
+  max-height: 15rem;
+  height: auto;
   margin: 0 auto;
 }
 .article-albums {
