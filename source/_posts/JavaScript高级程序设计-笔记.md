@@ -31,6 +31,8 @@ photos: [
 
   浏览器对象模型，以`window`对象为依托，表示浏览器窗口以及页面可见区域。同时,`window`对象还是ECMAScript中的`Global`对象。
 
+<!--more-->
+
 ##  第二章 在HTML中使用JavaScript
 
 - 标签的位置
@@ -109,7 +111,7 @@ photos: [
   obj1.name="Chin";
   console.log(obj2.name) //"Chin"
   ```
-<!--more-->
+
 - 参数传递
 
   参数传递是按值传递的。
