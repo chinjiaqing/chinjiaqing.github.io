@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://chinjiaqing.github.io/"/>
-  <updated>2020-07-02T15:13:41.755Z</updated>
+  <updated>2020-07-02T15:26:07.847Z</updated>
   <id>https://chinjiaqing.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://chinjiaqing.github.io/2020/07/02/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-%E7%AC%94%E8%AE%B0/"/>
     <id>https://chinjiaqing.github.io/2020/07/02/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-%E7%AC%94%E8%AE%B0/</id>
     <published>2020-07-02T07:51:21.000Z</published>
-    <updated>2020-07-02T15:13:41.755Z</updated>
+    <updated>2020-07-02T15:26:07.847Z</updated>
     
     <summary type="html">
     
@@ -43,56 +43,6 @@
 &lt;p&gt;浏览器对象模型，以&lt;code&gt;window&lt;/code&gt;对象为依托，表示浏览器窗口以及页面可见区域。同时,&lt;code&gt;window&lt;/code&gt;对象还是ECMAScript中的&lt;code&gt;Global&lt;/code&gt;对象。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&quot;第二章-在HTML中使用JavaScript&quot;&gt;&lt;a href=&quot;#第二章-在HTML中使用JavaScript&quot; class=&quot;headerlink&quot; title=&quot;第二章 在HTML中使用JavaScript&quot;&gt;&lt;/a&gt;第二章 在HTML中使用JavaScript&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;标签的位置&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;延迟脚本&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;异步脚本&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;noscript&lt;/p&gt;
-&lt;figure class=&quot;highlight php&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;script type=&lt;span class=&quot;string&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt; defer=&lt;span class=&quot;string&quot;&gt;&quot;defer&quot;&lt;/span&gt; src=&lt;span class=&quot;string&quot;&gt;&quot;xx.js&quot;&lt;/span&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;script type=&lt;span class=&quot;string&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt; async src=&lt;span class=&quot;string&quot;&gt;&quot;xx.js&quot;&lt;/span&gt;&amp;gt;&amp;lt;/script&amp;gt; &lt;span class=&quot;comment&quot;&gt;//只适用于外部脚本文件,并不能保证其执行的先后顺序&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;noscript&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;p&amp;gt;当前浏览器不支持(未启用)JavaScript.&amp;lt;/p&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;/noscript&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;第三章-基本概念&quot;&gt;&lt;a href=&quot;#第三章-基本概念&quot; class=&quot;headerlink&quot; title=&quot;第三章 基本概念&quot;&gt;&lt;/a&gt;第三章 基本概念&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;语法&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;关键字、保留字&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;变量&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;数据类型&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;操作符&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;语句&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;label语句&lt;/li&gt;
-&lt;/ul&gt;
-&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;begin:&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt;(&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; i=&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;i&amp;lt;&lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;;i++)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt;(&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; j=&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;j&amp;lt;&lt;span class=&quot;number&quot;&gt;5&lt;/span&gt;;j++)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(j+i=&lt;span class=&quot;number&quot;&gt;6&lt;/span&gt;)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;keyword&quot;&gt;break&lt;/span&gt; begin;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-
-&lt;ul&gt;
-&lt;li&gt;with&lt;/li&gt;
-&lt;/ul&gt;
-&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//严格模式下，不被允许&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; hostName = location.hostname;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; url = location.href;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//等于如下代码:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;with&lt;/span&gt;(location)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; hostName = hostname;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; url = href;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//大量使用with会导致性能下降&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;函数&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;第四章-变量、作用域和内存&quot;&gt;&lt;a href=&quot;#第四章-变量、作用域和内存&quot; class=&quot;headerlink&quot; title=&quot;第四章 变量、作用域和内存&quot;&gt;&lt;/a&gt;第四章 变量、作用域和内存&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;基本类型和引用类型的值&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;变量可能包含两种不同数据类型的值：&lt;code&gt;基本类型值&lt;/code&gt;(数据段)和&lt;code&gt;引用类型值&lt;/code&gt;(对象)。&lt;/li&gt;
-&lt;li&gt;不能给&lt;code&gt;基本类型值&lt;/code&gt;添加属性。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;复制变量值&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;复制&lt;code&gt;基本类型值&lt;/code&gt;时，会分配一份新的空间，创建一个新值&lt;/li&gt;
-&lt;li&gt;复制&lt;code&gt;引用类型值&lt;/code&gt;时，不同的是，该值实际是一个指针，指向存储在堆中的一个对象。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; obj1 = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;built_in&quot;&gt;Object&lt;/span&gt;();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; obj2 = obj1;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;obj1.name=&lt;span class=&quot;string&quot;&gt;&quot;Chin&quot;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(obj2.name) &lt;span class=&quot;comment&quot;&gt;//&quot;Chin&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
     
     </summary>
     

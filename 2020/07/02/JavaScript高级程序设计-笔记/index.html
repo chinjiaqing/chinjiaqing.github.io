@@ -111,6 +111,8 @@
 <p>浏览器对象模型，以<code>window</code>对象为依托，表示浏览器窗口以及页面可见区域。同时,<code>window</code>对象还是ECMAScript中的<code>Global</code>对象。</p>
 </li>
 </ul>
+<a id="more"></a>
+
 <h2 id="第二章-在HTML中使用JavaScript"><a href="#第二章-在HTML中使用JavaScript" class="headerlink" title="第二章 在HTML中使用JavaScript"></a>第二章 在HTML中使用JavaScript</h2><ul>
 <li><p>标签的位置</p>
 </li>
@@ -161,7 +163,7 @@
 <li>复制<code>引用类型值</code>时，不同的是，该值实际是一个指针，指向存储在堆中的一个对象。</li>
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj1 = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line"><span class="keyword">var</span> obj2 = obj1;</span><br><span class="line">obj1.name=<span class="string">"Chin"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(obj2.name) <span class="comment">//"Chin"</span></span><br></pre></td></tr></table></figure>
-<a id="more"></a></li>
+</li>
 <li><p>参数传递</p>
 <p>参数传递是按值传递的。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setName</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line">    obj.name = <span class="string">"Chin"</span>;</span><br><span class="line">    obj = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">    obj.name =  <span class="string">"Qin"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">setName(person);</span><br><span class="line"><span class="built_in">console</span>.log(person.name) <span class="comment">// "Chin"</span></span><br><span class="line"><span class="comment">//即使在函数内部修改了参数的值，但原始的引用仍然保持未变。</span></span><br><span class="line"><span class="comment">//在函数内部重写obj时，这个变量引用就是一个局部对象了，在函数执行完毕后立即销毁。</span></span><br></pre></td></tr></table></figure>
