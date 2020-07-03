@@ -5,8 +5,9 @@ date: 2020-07-02 14:08:49
 
 ### 日常
 - <i class="fe fe-flag"></i> 每天
- - <i class="fe fe-clock"></i> 晚11.30准时入睡
- - <i class="fe fe-bell"></i> 早7.30准时起床
+ - <i class="fe fe-clock"></i> 晚11.30 准时入睡
+ - <i class="fe fe-bell"></i> 早7.30 准时起床
+ - <i class="fe fe-terminal"></i> [leetcode](https://leetcode-cn.com/ "leetcode") 每日一题
 - <i class="fe fe-flag"></i> 每周
  - <i class="fe fe-align-left"></i> 完成跑步4次
  - <i class="fe fe-pencil"></i> 新增博文5篇
