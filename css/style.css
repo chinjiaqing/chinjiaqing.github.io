@@ -1191,7 +1191,7 @@ img {
   z-index: 0;
   height: 90vh;
   overflow: hidden;
-  background-image: url("../images/summer.jpg");
+  background-image: url("https://gitee.com/chinjiaqing/blogImg/raw/master/imgs/summer_cover.jpg");
   background-size: cover;
   background-repeat: no-repeat;
 }

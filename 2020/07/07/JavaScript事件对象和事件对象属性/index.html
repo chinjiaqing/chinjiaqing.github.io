@@ -11,6 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>
+    JavaScript事件对象和事件对象属性 |
     
     季夏·拾陆</title>
   
@@ -32,47 +33,17 @@
 
 <body>
 <main class="content">
-  <section class="jumbotron">
-  <div class="video">
-    
-      <div class="video-frame">
-        <img src="/images/ocean/overlay-hero.png" alt="Decorative image frame">
-      </div>
-    
-    <div class="video-media">
-      <div class="video-overlay"></div>
-    </div>
-    <div class="video-inner text-center text-white">
-      <h1><a href="/">季夏·拾陆</a></h1>
-      <p><span id="jinrishici-sentence">碧琅玕绕碧梧桐，面面轩窗面面风。</span></p>
-      <div><img src="/images/chin-b.png" class="brand" alt="季夏·拾陆"></div>
-    </div>
-    <div class="video-learn-more">
-      <a class="anchor" href="#landingpage"><i class="fe fe-mouse"></i></a>
-    </div>
-  </div>
-  
-<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js"></script>
-
-</section>
-
-<div id="landingpage">
   <section class="outer">
-    <article class="articles">
-      
-      <h1 class="page-type-title"></h1>
-      
-        
-          <article id="post-JavaScript事件对象和事件对象属性" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+  <article id="post-JavaScript事件对象和事件对象属性" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
 
     <div class="article-inner">
         
             <header class="article-header">
                 
   
-    <h2 itemprop="name">
-      <a class="article-title" href="/2020/07/07/JavaScript%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1%E5%92%8C%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7/">JavaScript事件对象和事件对象属性</a>
-    </h2>
+    <h1 class="article-title" itemprop="name">
+      JavaScript事件对象和事件对象属性
+    </h1>
   
   
 
@@ -96,6 +67,14 @@
                     
 
                         
+                            
+    <div class="tocbot"></div>
+
+
+
+
+
+                                
 
                                     <div class="article-entry" itemprop="articleBody">
                                         
@@ -169,250 +148,35 @@
     </div>
 
     
-
-                
-
-</article>
         
-          <article id="post-leetcode每日一题：两数之和" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
-
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2020/07/03/leetcode%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98%EF%BC%9A%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">leetcode每日一题：两数之和</a>
-    </h2>
-  
-  
+  <nav class="article-nav">
+    
+    
+      <a href="/2020/07/03/leetcode%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98%EF%BC%9A%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/" class="article-nav-link">
+        <strong class="article-nav-caption">后一篇</strong>
+        <div class="article-nav-title">leetcode每日一题：两数之和</div>
+      </a>
+    
+  </nav>
 
 
-
-
-            </header>
             
 
                 
-                    <div class="article-meta">
-                        <a href="/2020/07/03/leetcode%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98%EF%BC%9A%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/" class="article-date">
-  <time datetime="2020-07-03T09:45:31.000Z" itemprop="datePublished">2020-07-03</time>
-</a>
-                            
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
-  </div>
-
-                    </div>
                     
-
                         
-
-                                    <div class="article-entry" itemprop="articleBody">
-                                        
-
-
-                                            
-
-                                                
-                                                    <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。<br>你可以假设每种输入只会对应一个答案。但是，数组中同一个元素不能使用两遍。<br><strong>示例</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">给定 nums = [<span class="number">2</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">15</span>], target = <span class="number">9</span></span><br><span class="line"></span><br><span class="line">因为 nums[<span class="number">0</span>] + nums[<span class="number">1</span>] = <span class="number">2</span> + <span class="number">7</span> = <span class="number">9</span></span><br><span class="line">所以返回 [<span class="number">0</span>, <span class="number">1</span>]</span><br></pre></td></tr></table></figure>
-                                                        
-                                                            <a class="article-more-link" href="/2020/07/03/leetcode%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98%EF%BC%9A%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">
-                                                                Read More...
-                                                            </a>
-                                                            
-                                                                
-                                    </div>
-                                    <footer class="article-footer">
-                                        <a data-url="https://chinjiaqing.github.io/2020/07/03/leetcode%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98%EF%BC%9A%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/" data-id="ckcc1zjew0008lcv56m4d3741" class="article-share-link">
-                                            分享
-                                        </a>
-                                        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" rel="tag">leetcode每日一题</a></li></ul>
-
-                                    </footer>
-
-    </div>
-
-    
-
-                
+                            
 
 </article>
-        
-          <article id="post-JavaScript高级程序设计-笔记" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
-
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2020/07/02/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-%E7%AC%94%E8%AE%B0/">JavaScript高级程序设计 笔记</a>
-    </h2>
-  
-  
-
-
-
-
-            </header>
-            
-
-                
-                    <div class="article-meta">
-                        <a href="/2020/07/02/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-%E7%AC%94%E8%AE%B0/" class="article-date">
-  <time datetime="2020-07-02T07:51:21.000Z" itemprop="datePublished">2020-07-02</time>
-</a>
-                            
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
-  </div>
-
-                    </div>
-                    
-
-                        
-
-                                    <div class="article-entry" itemprop="articleBody">
-                                        
-
-
-                                            
-  <div class="article-gallery">
-    <div class="article-gallery-photos">
-      
-        
-          <a class="article-gallery-img" href="/2020/07/02/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-%E7%AC%94%E8%AE%B0/" rel="gallery_ckcc1zjev0006lcv5byhiadr0">
-            <img src="https://gitee.com/chinjiaqing/blogImg/raw/master/imgs/JavaScript高级程序设计.jpg" itemprop="image">
-          </a>
-        
-      
-    </div>
-  </div>
-
-
-                                                
-                                                    <h2 id="第一章-JavaScript简介"><a href="#第一章-JavaScript简介" class="headerlink" title="第一章 JavaScript简介"></a>第一章 JavaScript简介</h2><ul>
-<li><p>JavaScript简史</p>
-<p>诞生于1995年。</p>
-</li>
-<li><p>JavaScript实现</p>
-</li>
-</ul>
-<ul>
-<li><p>ECMAScript</p>
-<p>是对实现<code>ECMA-262</code>标准规定的各个方面内容的语言描述。</p>
-</li>
-<li><p>DOM</p>
-<p>文档对象模型，用于HTML的应用程序编程接口。<code>DOM</code>把整个页面映射成为一个多层节点结构。</p>
-</li>
-<li><p>BOM</p>
-<p>浏览器对象模型，以<code>window</code>对象为依托，表示浏览器窗口以及页面可见区域。同时,<code>window</code>对象还是ECMAScript中的<code>Global</code>对象。</p>
-</li>
-</ul>
-                                                        
-                                                            <a class="article-more-link" href="/2020/07/02/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-%E7%AC%94%E8%AE%B0/">
-                                                                Read More...
-                                                            </a>
-                                                            
-                                                                
-                                    </div>
-                                    <footer class="article-footer">
-                                        <a data-url="https://chinjiaqing.github.io/2020/07/02/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-%E7%AC%94%E8%AE%B0/" data-id="ckcc1zjev0006lcv5byhiadr0" class="article-share-link">
-                                            分享
-                                        </a>
-                                        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" rel="tag">JavaScript高级程序设计</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a></li></ul>
-
-                                    </footer>
-
-    </div>
-
-    
-
-                
-
-</article>
-        
-          <article id="post-Win10使用Docker部署Onlyoffice" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
-
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/2020/07/02/Win10%E4%BD%BF%E7%94%A8Docker%E9%83%A8%E7%BD%B2Onlyoffice/">Win10使用Docker部署OnlyOffice</a>
-    </h2>
-  
-  
-
-
-
-
-            </header>
-            
-
-                
-                    <div class="article-meta">
-                        <a href="/2020/07/02/Win10%E4%BD%BF%E7%94%A8Docker%E9%83%A8%E7%BD%B2Onlyoffice/" class="article-date">
-  <time datetime="2020-07-02T07:36:27.000Z" itemprop="datePublished">2020-07-02</time>
-</a>
-                            
-                    </div>
-                    
-
-                        
-
-                                    <div class="article-entry" itemprop="articleBody">
-                                        
-
-
-                                            
-
-                                                
-                                                                    <ul>
-<li>安装docker</li>
-<li>拉取镜像<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull onlyoffice/documentserver</span><br></pre></td></tr></table></figure></li>
-<li>启动服务<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -i -t -d -p 8072:80 onlyoffice/documentserver</span><br></pre></td></tr></table></figure></li>
-</ul>
-
-                                                                        
-                                    </div>
-                                    <footer class="article-footer">
-                                        <a data-url="https://chinjiaqing.github.io/2020/07/02/Win10%E4%BD%BF%E7%94%A8Docker%E9%83%A8%E7%BD%B2Onlyoffice/" data-id="ckcc1zjer0002lcv5ag9z6drm" class="article-share-link">
-                                            分享
-                                        </a>
-                                        
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/onlyoffice/" rel="tag">onlyoffice</a></li></ul>
-
-                                    </footer>
-
-    </div>
-
-    
-
-                
-
-</article>
-        
-    </article>
-    
-  
-    
-  </section>
-</div>
-
+</section>
   <footer class="footer">
   <div class="outer">
     <div class="float-right">
       <ul class="list-inline">
   
-    <li><i class="fe fe-bar-chart"></i> <span id="busuanzi_value_site_pv"></span></li>
-  
     <li><i class="fe fe-smile-alt"></i> <span id="busuanzi_value_site_uv"></span></li>
+  
+    <li><i class="fe fe-bookmark"></i> <span id="busuanzi_value_page_pv"></span></li>
   
 </ul>
     </div>
@@ -504,6 +268,23 @@
 
 
 
+
+  
+<script src="/js/tocbot.min.js"></script>
+
+  <script>
+    // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+    tocbot.init({
+      tocSelector: '.tocbot',
+      contentSelector: '.article-entry',
+      headingSelector: 'h1, h2, h3, h4, h5, h6',
+      hasInnerContainers: true,
+      scrollSmooth: true,
+      positionFixedSelector: '.tocbot',
+      positionFixedClass: 'is-position-fixed',
+      fixedSidebarOffset: 'auto',
+    });
+  </script>
 
 
 

@@ -1,6 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>JavaScript事件对象和事件对象属性</title>
+    <url>/2020/07/07/JavaScript%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1%E5%92%8C%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7/</url>
+    <content><![CDATA[<h2 id="获取事件对象和事件源"><a href="#获取事件对象和事件源" class="headerlink" title="获取事件对象和事件源"></a>获取事件对象和事件源</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">document</span>.onclick = <span class="function"><span class="keyword">function</span>(<span class="params">ev</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> e = ev || <span class="built_in">window</span>.event;</span><br><span class="line">    <span class="keyword">var</span> target = e.target || <span class="built_in">window</span>.event.srcElement;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="button-事件属性"><a href="#button-事件属性" class="headerlink" title="button 事件属性"></a>button 事件属性</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">event.button=<span class="number">0</span>|<span class="number">1</span>|<span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>鼠标左键</td>
+</tr>
+<tr>
+<td>1</td>
+<td>鼠标中键</td>
+</tr>
+<tr>
+<td>2</td>
+<td>鼠标右键</td>
+</tr>
+</tbody></table>
+<p>IE</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>鼠标左键</td>
+</tr>
+<tr>
+<td>4</td>
+<td>鼠标中键</td>
+</tr>
+<tr>
+<td>2</td>
+<td>鼠标右键</td>
+</tr>
+</tbody></table>
+<h2 id="阻止事件冒泡"><a href="#阻止事件冒泡" class="headerlink" title="阻止事件冒泡"></a>阻止事件冒泡</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"> oBox.onclick = <span class="function"><span class="keyword">function</span>(<span class="params">ev</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> e = ev || <span class="built_in">window</span>.event;</span><br><span class="line">    <span class="comment">// e.cancelBubble = true;</span></span><br><span class="line">    <span class="comment">// e.stopPropagation();</span></span><br><span class="line">    stopBubble(e);</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">stopBubble</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(e.stopPropagation)&#123;</span><br><span class="line">        e.stopPropagation();</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        e.cancelBubble = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="阻止默认事件"><a href="#阻止默认事件" class="headerlink" title="阻止默认事件"></a>阻止默认事件</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"> oBox.onclick = <span class="function"><span class="keyword">function</span>(<span class="params">ev</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> e = ev || <span class="built_in">window</span>.event;</span><br><span class="line">    <span class="comment">// e.preventDefault();</span></span><br><span class="line">    <span class="comment">// window.event.returnValue = false;</span></span><br><span class="line">    preventDef(e);</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">preventDef</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(e.preventDefault)&#123;</span><br><span class="line">        e.stopPropagation();</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">window</span>.event.returnValue = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="事件监听器兼容"><a href="#事件监听器兼容" class="headerlink" title="事件监听器兼容"></a>事件监听器兼容</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addEvent</span>(<span class="params">node,evenType,funcName</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(node.addEventListener)&#123;</span><br><span class="line">        node.addEventListener(evenType,funcName,<span class="literal">false</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        node.attachEvent(<span class="string">"on"</span> + evenType,funcName);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">removeEvent</span>(<span class="params">node,evenType,funcName</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(node.removeEventListener)&#123;</span><br><span class="line">        node.removeEventListener(evenType,funcName,<span class="literal">false</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        node.detachEvent(<span class="string">"on"</span> + evenType,funcName);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode每日一题：两数之和</title>
+    <url>/2020/07/03/leetcode%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98%EF%BC%9A%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/</url>
+    <content><![CDATA[<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。<br>你可以假设每种输入只会对应一个答案。但是，数组中同一个元素不能使用两遍。<br><strong>示例</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">给定 nums = [<span class="number">2</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">15</span>], target = <span class="number">9</span></span><br><span class="line"></span><br><span class="line">因为 nums[<span class="number">0</span>] + nums[<span class="number">1</span>] = <span class="number">2</span> + <span class="number">7</span> = <span class="number">9</span></span><br><span class="line">所以返回 [<span class="number">0</span>, <span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<blockquote>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/two-sum" target="_blank" rel="noopener">https://leetcode-cn.com/problems/two-sum</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+</blockquote>
+<h2 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[]&#125;</span> <span class="variable">nums</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number&#125;</span> <span class="variable">target</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number[]&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"> <span class="comment">// 1. 基础版</span></span><br><span class="line"><span class="keyword">var</span> twoSum = <span class="function"><span class="keyword">function</span>(<span class="params">nums, target</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> res = [];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;nums.length;i++)&#123;</span><br><span class="line">        <span class="keyword">let</span> offset = target - nums[i];</span><br><span class="line">        <span class="keyword">if</span>(res[offset] !== <span class="literal">undefined</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> [res[offset],i];</span><br><span class="line">        &#125;</span><br><span class="line">        res[nums[i]] = i;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> res = twoSum([<span class="number">-1</span>,<span class="number">-2</span>,<span class="number">-3</span>,<span class="number">-4</span>,<span class="number">-5</span>],<span class="number">-8</span>);</span><br><span class="line"><span class="comment">//测试用时 ： 0.14990234375ms</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 2.进阶版</span></span><br><span class="line"><span class="keyword">var</span> twoSum2 = <span class="function"><span class="keyword">function</span>(<span class="params">nums, target</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">      <span class="keyword">let</span> dif = target-nums[i]</span><br><span class="line">      <span class="keyword">if</span> (map.has(dif)) &#123;</span><br><span class="line">        <span class="keyword">return</span> [map.get(dif), i]</span><br><span class="line">      &#125;</span><br><span class="line">      map.set(nums[i], i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> res2 = twoSum2([<span class="number">-1</span>,<span class="number">-2</span>,<span class="number">-3</span>,<span class="number">-4</span>,<span class="number">-5</span>],<span class="number">-8</span>);</span><br><span class="line"><span class="comment">//测试用时 ： 0.01611328125ms</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><h3 id="Map对象"><a href="#Map对象" class="headerlink" title="Map对象"></a>Map对象</h3><p><i class="fe fe-link"></i> MDN:<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Map" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Map</a></p>
+]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+        <tag>leetcode每日一题</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JavaScript高级程序设计 笔记</title>
     <url>/2020/07/02/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<h2 id="第一章-JavaScript简介"><a href="#第一章-JavaScript简介" class="headerlink" title="第一章 JavaScript简介"></a>第一章 JavaScript简介</h2><ul>
