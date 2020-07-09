@@ -63,6 +63,73 @@
       <h1 class="page-type-title"></h1>
       
         
+          <article id="post-Obejct-defineProperty实现双向绑定" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2020/07/10/Obejct-defineProperty%E5%AE%9E%E7%8E%B0%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A/">Obejct.defineProperty实现双向绑定</a>
+    </h2>
+  
+  
+
+
+
+
+            </header>
+            
+
+                
+                    <div class="article-meta">
+                        <a href="/2020/07/10/Obejct-defineProperty%E5%AE%9E%E7%8E%B0%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A/" class="article-date">
+  <time datetime="2020-07-09T16:21:49.000Z" itemprop="datePublished">2020-07-10</time>
+</a>
+                            
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+  </div>
+
+                    </div>
+                    
+
+                        
+
+                                    <div class="article-entry" itemprop="articleBody">
+                                        
+
+
+                                            
+
+                                                
+                                                                    <h2 id="Obejct-defineProperty手册"><a href="#Obejct-defineProperty手册" class="headerlink" title="Obejct.defineProperty手册"></a>Obejct.defineProperty手册</h2><p>MDN直达: <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty</a></p>
+<h2 id="实现双向绑定"><a href="#实现双向绑定" class="headerlink" title="实现双向绑定"></a>实现双向绑定</h2><p><strong>HTML代码</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"ipt"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"txt"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>JS代码</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">let</span> data = &#123;<span class="attr">msg</span>:<span class="string">""</span>&#125;; <span class="comment">//相当于vue 的 data</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">watch</span>(<span class="params">obj,callback</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">Object</span>.keys(obj).forEach(<span class="function"><span class="params">key</span>=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">let</span> internalValue = obj[key];</span><br><span class="line">        <span class="built_in">Object</span>.defineProperty(obj,key,&#123;</span><br><span class="line">            <span class="keyword">get</span>()&#123;</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">`getting key "<span class="subst">$&#123;key&#125;</span>": <span class="subst">$&#123;internalValue&#125;</span>`</span>)</span><br><span class="line">                <span class="keyword">return</span> internalValue</span><br><span class="line">            &#125;</span><br><span class="line">            ,<span class="keyword">set</span>(newValue)&#123;</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">`setting key "<span class="subst">$&#123;key&#125;</span>" to: <span class="subst">$&#123;newValue&#125;</span>`</span>)</span><br><span class="line">                internalValue = newValue   <span class="comment">//赋新值</span></span><br><span class="line">                <span class="comment">//劫持后 执行回调</span></span><br><span class="line">                callback(internalValue) </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">updateMsg</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">document</span>.querySelector(<span class="string">"#ipt"</span>).value = value;</span><br><span class="line">    <span class="built_in">document</span>.querySelector(<span class="string">"#txt"</span>).innerHTML = value;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.querySelector(<span class="string">"#ipt"</span>).addEventListener(<span class="string">"input"</span>,(e)=&gt;&#123;</span><br><span class="line">    data.msg = e.target.value</span><br><span class="line">&#125;)</span><br><span class="line">watch(data,updateMsg)</span><br></pre></td></tr></table></figure>
+
+                                                                        
+                                    </div>
+                                    <footer class="article-footer">
+                                        <a data-url="https://chinjiaqing.github.io/2020/07/10/Obejct-defineProperty%E5%AE%9E%E7%8E%B0%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A/" data-id="ckcf0merh0006pcv57huv95i4" class="article-share-link">
+                                            分享
+                                        </a>
+                                        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Obejct-defineProperty/" rel="tag">Obejct.defineProperty</a></li></ul>
+
+                                    </footer>
+
+    </div>
+
+    
+
+                
+
+</article>
+        
           <article id="post-JavaScript事件对象和事件对象属性" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
 
     <div class="article-inner">
@@ -158,7 +225,7 @@
                                                                         
                                     </div>
                                     <footer class="article-footer">
-                                        <a data-url="https://chinjiaqing.github.io/2020/07/07/JavaScript%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1%E5%92%8C%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7/" data-id="ckcc1zjel0000lcv5fr91a2yw" class="article-share-link">
+                                        <a data-url="https://chinjiaqing.github.io/2020/07/07/JavaScript%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1%E5%92%8C%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7/" data-id="ckcf0mer80000pcv57dur3bwb" class="article-share-link">
                                             分享
                                         </a>
                                         
@@ -225,7 +292,7 @@
                                                                 
                                     </div>
                                     <footer class="article-footer">
-                                        <a data-url="https://chinjiaqing.github.io/2020/07/03/leetcode%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98%EF%BC%9A%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/" data-id="ckcc1zjew0008lcv56m4d3741" class="article-share-link">
+                                        <a data-url="https://chinjiaqing.github.io/2020/07/03/leetcode%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98%EF%BC%9A%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/" data-id="ckcf0merj0009pcv5htgyeoh6" class="article-share-link">
                                             分享
                                         </a>
                                         
@@ -284,7 +351,7 @@
     <div class="article-gallery-photos">
       
         
-          <a class="article-gallery-img" href="/2020/07/02/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-%E7%AC%94%E8%AE%B0/" rel="gallery_ckcc1zjev0006lcv5byhiadr0">
+          <a class="article-gallery-img" href="/2020/07/02/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-%E7%AC%94%E8%AE%B0/" rel="gallery_ckcf0merc0002pcv534vr5rfa">
             <img src="https://gitee.com/chinjiaqing/blogImg/raw/master/imgs/JavaScript高级程序设计.jpg" itemprop="image">
           </a>
         
@@ -320,7 +387,7 @@
                                                                 
                                     </div>
                                     <footer class="article-footer">
-                                        <a data-url="https://chinjiaqing.github.io/2020/07/02/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-%E7%AC%94%E8%AE%B0/" data-id="ckcc1zjev0006lcv5byhiadr0" class="article-share-link">
+                                        <a data-url="https://chinjiaqing.github.io/2020/07/02/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-%E7%AC%94%E8%AE%B0/" data-id="ckcf0merc0002pcv534vr5rfa" class="article-share-link">
                                             分享
                                         </a>
                                         
@@ -382,7 +449,7 @@
                                                                         
                                     </div>
                                     <footer class="article-footer">
-                                        <a data-url="https://chinjiaqing.github.io/2020/07/02/Win10%E4%BD%BF%E7%94%A8Docker%E9%83%A8%E7%BD%B2Onlyoffice/" data-id="ckcc1zjer0002lcv5ag9z6drm" class="article-share-link">
+                                        <a data-url="https://chinjiaqing.github.io/2020/07/02/Win10%E4%BD%BF%E7%94%A8Docker%E9%83%A8%E7%BD%B2Onlyoffice/" data-id="ckcf0meri0008pcv52epa4jcu" class="article-share-link">
                                             分享
                                         </a>
                                         
