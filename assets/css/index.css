@@ -1,0 +1,31 @@
+
+    body{
+        padding-left: 20px;
+        padding-right: 20px;
+        box-sizing: border-box;
+    }
+    header{
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
+
+    main>.flex{
+        flex-wrap: wrap;
+        align-items: flex-start;
+    }
+    nav{
+        position: relative;
+        top: unset;
+        width: 50%;
+        margin-top: 10px;
+    }
+    
+    nav ul {
+        padding: 0 !important;
+    }
+
+    @media (max-width: 980px) {
+        nav{
+            width: 100%;
+        }
+    }
