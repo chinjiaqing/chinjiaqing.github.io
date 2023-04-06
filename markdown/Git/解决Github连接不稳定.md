@@ -1,3 +1,11 @@
+<!--
+ * @Author: Chin Jiaqing
+ * @Date: 2023-04-06 23:25:44
+ * @LastEditTime: 2023-04-06 23:41:00
+ * @LastEditors: Chin Jiaqing
+ * @Description:
+-->
+
 Github 经常会出现即使翻墙也连不上的问题，经过搜索，发现修改 host 文件比较靠谱。
 
 ## 修改 host 文件
