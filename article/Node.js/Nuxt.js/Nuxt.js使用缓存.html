@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=1"
+    />
+    <title>Nuxt.js使用缓存 - 季夏拾陆</title>
+    <meta name="author" content="chinjiaqing" >
+    <meta name="description" content="Chinjiaqing`s blog,Some writing about the front-end ...">
+    <meta name="keywords" content="chinjiaqing,markdown,front-end,Nuxt.js使用缓存">
+    <link rel="stylesheet" href="/assets/css/normalize.css"><link rel="stylesheet" href="/assets/css/base.css"><link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/lxgw-wenkai-webfont/1.1.0/style.min.css"><link rel="stylesheet" href="/assets/css/article.css"><link rel="stylesheet" href="/assets/highlight/styles/default.min.css"><link rel="stylesheet" href="/assets/highlight/styles/atom-one-light.min.css">
+    <script src="/assets/highlight/highlight.min.js"></script>
+
+  </head>
+  <body>
+    <header id="header" class="flex flex-center">
+      <div class="container flex flex-between">
+        <ul class="flex">
+          <li><a href="/index.html">首页 · HOME</a></li>
+          <li><a href="/about.html">关于 · ABOUT</a></li>
+        </ul>
+        <a href="/index.html" class="logo">@季夏拾陆</a>
+      </div>
+    </header>
+    <main class="flex flex-center">
+      <div class="container relative flex">
+        <nav>
+          <ul>
+<li class="level2"><a href="#1">组件级别的缓存</a></li><li class="level2"><a href="#2">API 级别的缓存</a></li><li class="level2"><a href="#3">页面级别的缓存</a></li><li class="level3"><a href="#3.1">编写 cache 中间件</a></li><li class="level3"><a href="#3.2">在 nuxt.config.js 中配置中间件</a></li></ul>
+
+        </nav>
+        <article>
+          <h1>Nuxt.js使用缓存</h1>
+          <p class="datetime">🕓<span> 2023-04-06 22:40:52</span><span>⏳9分46秒(2.7k字)</span></p>
+          <!--
+ * @Author: Chin Jiaqing
+ * @Date: 2023-04-06 22:40:52
+ * @LastEditTime: 2023-04-06 22:42:53
+ * @LastEditors: Chin Jiaqing
+ * @Description:
+-->
+<p>Nuxt 的缓存可以分为组件级别的缓存，API 级别的缓存和页面级别的缓存</p>
+<h2 id="1">组件级别的缓存</h2>
+<p>在 nuxt.config.js 中编写相关配置：</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> <span class="hljs-variable constant_">LRU</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;lru-cache&quot;</span>); <span class="hljs-comment">// 需要先安装该依赖</span>
+<span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = {
+  <span class="hljs-attr">render</span>: {
+    <span class="hljs-attr">bundleRenderer</span>: {
+      <span class="hljs-attr">cache</span>: <span class="hljs-title function_">LRU</span>({
+        <span class="hljs-attr">max</span>: <span class="hljs-number">1000</span>, <span class="hljs-comment">// 最大的缓存个数</span>
+        <span class="hljs-attr">maxAge</span>: <span class="hljs-number">1000</span> * <span class="hljs-number">60</span> * <span class="hljs-number">15</span>, <span class="hljs-comment">// 缓存15分钟</span>
+      }),
+    },
+  },
+};
+</code></pre>
+<p>然后需要在 vue 组件上增加一些相关属性：</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;AppHeader&quot;</span>,
+  <span class="hljs-attr">props</span>: [<span class="hljs-string">&quot;type&quot;</span>],
+  <span class="hljs-attr">serverCacheKey</span>: <span class="hljs-function">(<span class="hljs-params">props</span>) =&gt;</span> props.<span class="hljs-property">type</span>,
+};
+</code></pre>
+<p>上述组件会根据父组件传下来的 type 值去做缓存，键值是： AppHeader::${props.type} ，由此，新的请求到来时，只要父组件传下来的 type 属性之前处理过，就可以复用之前的渲染缓存结果，以增进性能。<br>
+从该例子可以看出，如果该组件除了依赖父组件的 type 属性，还依赖于别的属性， serverCacheKey 这里也要做出相应的改变，因此，如果组件依赖于很多的全局状态，或者，依赖的状态取值非常多，意味需要缓存会被频繁被设置而导致溢出，其实就没有多大意义了，在 lru-cache 的配置中，设置的最大缓存个数是 1000，超出部分就会被清掉<br>
+其次，不应该缓存可能对渲染上下文产生副作用的子组件，比如，组件的 created 与 beforeCreated 的钩子在服务端也会走，组件被缓存后就不会执行了，这些可能影响到渲染上下文的地方也要小心，更多内容请参考：<a href="https://cn.vuejs.org/guide/scaling-up/ssr.html#why-ssr">组件级别缓存</a><br>
+一般来说，比较适合的场景是 v-for 大量数据的渲染，因为循环操作比较耗 cpu</p>
+<h2 id="2">API 级别的缓存</h2>
+<p>通常是对 axios 进行缓存标识，代码如下：</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;axios&quot;</span>;
+<span class="hljs-keyword">import</span> md5 <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;md5&quot;</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-variable constant_">LRU</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;lru-cache&quot;</span>;
+
+<span class="hljs-comment">// 给api加3秒缓存</span>
+<span class="hljs-keyword">const</span> <span class="hljs-variable constant_">CACHED</span> = <span class="hljs-title function_">LRU</span>({
+  <span class="hljs-attr">max</span>: <span class="hljs-number">1000</span>,
+  <span class="hljs-attr">maxAge</span>: <span class="hljs-number">1000</span> * <span class="hljs-number">3</span>,
+});
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">request</span>(<span class="hljs-params">config</span>) {
+  <span class="hljs-keyword">let</span> key;
+  <span class="hljs-comment">// 服务端才加缓存，浏览器端就不管了</span>
+  <span class="hljs-keyword">if</span> (config.<span class="hljs-property">cache</span> &amp;&amp; !process.<span class="hljs-property">browser</span>) {
+    <span class="hljs-keyword">const</span> { params = {}, data = {} } = config;
+    key = <span class="hljs-title function_">md5</span>(config.<span class="hljs-property">url</span> + <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(params) + <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(data));
+    <span class="hljs-keyword">if</span> (<span class="hljs-variable constant_">CACHED</span>.<span class="hljs-title function_">has</span>(key)) {
+      <span class="hljs-comment">// 缓存命中</span>
+      <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(<span class="hljs-variable constant_">CACHED</span>.<span class="hljs-title function_">get</span>(key));
+    }
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-title function_">axios</span>(config).<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">rsp</span>) =&gt;</span> {
+    <span class="hljs-keyword">if</span> (config.<span class="hljs-property">cache</span> &amp;&amp; !process.<span class="hljs-property">browser</span>) {
+      <span class="hljs-comment">// 返回结果前先设置缓存</span>
+      <span class="hljs-variable constant_">CACHED</span>.<span class="hljs-title function_">set</span>(key, rsp.<span class="hljs-property">data</span>);
+    }
+    <span class="hljs-keyword">return</span> rsp.<span class="hljs-property">data</span>;
+  });
+}
+</code></pre>
+<p>使用时新增 cache 标识来判断是否需要做缓存</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> api = {
+  <span class="hljs-attr">getGames</span>: <span class="hljs-function">(<span class="hljs-params">params</span>) =&gt;</span>
+    <span class="hljs-title function_">request</span>({
+      <span class="hljs-attr">url</span>: <span class="hljs-string">&quot;/gameInfo/gatGames&quot;</span>,
+      params,
+      <span class="hljs-attr">cache</span>: <span class="hljs-literal">true</span>,
+    }),
+};
+</code></pre>
+<h2 id="3">页面级别的缓存</h2>
+<p>页面级别的话，需要编写中间件，对每次的 url 访问都进行缓存判断，比如之前的 Nuxt 项目有帖子模块，在一次 push 推送后并发量很大， 便采用的页面级的缓存。大致代码如下：</p>
+<h3 id="3.1">编写 cache 中间件</h3>
+<p>新建 cache.js</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> <span class="hljs-variable constant_">LRU</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;lru-cache&#x27;</span>);
+<span class="hljs-keyword">const</span> urlib = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;url&quot;</span>);
+<span class="hljs-keyword">export</span> pageCache = <span class="hljs-keyword">new</span> <span class="hljs-title function_">LRU</span>({
+    <span class="hljs-attr">max</span>: <span class="hljs-number">1000</span>, <span class="hljs-comment">// 缓存队列长度 最大缓存数量</span>
+    <span class="hljs-attr">maxAge</span>: <span class="hljs-number">1000</span> * <span class="hljs-number">2</span> * <span class="hljs-number">60</span>, <span class="hljs-comment">// 缓存时间 单位：毫秒</span>
+});
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> (<span class="hljs-params">req, res, next</span>) {
+    <span class="hljs-keyword">const</span> url = req.<span class="hljs-property">_parsedOriginalUrl</span>;
+    <span class="hljs-keyword">const</span> pathname = url ? (url.<span class="hljs-property">pathname</span> || <span class="hljs-string">&#x27;&#x27;</span>) : <span class="hljs-string">&#x27;&#x27;</span>;
+    <span class="hljs-keyword">let</span> topicId = <span class="hljs-string">&#x27;&#x27;</span>
+    <span class="hljs-keyword">const</span> reqParams = urlib.<span class="hljs-title function_">parse</span>(req.<span class="hljs-property">url</span>, <span class="hljs-literal">true</span>)
+    <span class="hljs-keyword">if</span> (pathname === <span class="hljs-string">&#x27;/topic&#x27;</span>) { <span class="hljs-comment">// 这里是 针对topic这个url进行缓存，也可以在地址栏加参数，如cache=1这种来判断是否要缓存</span>
+        topicId = reqParams.<span class="hljs-property">query</span>.<span class="hljs-property">topicId</span> || <span class="hljs-string">&#x27;&#x27;</span>
+    }
+    <span class="hljs-keyword">if</span> (topicId) { <span class="hljs-comment">// 这是对帖子id进行了判断</span>
+        <span class="hljs-keyword">const</span> params = {}
+        <span class="hljs-comment">// const { token, uid } = req;</span>
+        <span class="hljs-keyword">const</span> cacheKey = [<span class="hljs-string">&#x27;topic&#x27;</span>, topicId, <span class="hljs-string">&#x27;page&#x27;</span>].<span class="hljs-title function_">join</span>(<span class="hljs-string">&#x27;-&#x27;</span>) <span class="hljs-comment">//生成一个缓存key</span>
+        <span class="hljs-keyword">const</span> cacheHtml = cachePage.<span class="hljs-title function_">get</span>(cacheKey);
+        <span class="hljs-keyword">if</span> (cacheHtml) {
+            <span class="hljs-comment">//  如果没有Content-Type:text/html 的 header，gtmetrix网站无法做测评</span>
+            res.<span class="hljs-title function_">writeHead</span>(<span class="hljs-number">200</span>)
+            <span class="hljs-keyword">return</span> res.<span class="hljs-title function_">end</span>(cacheHtml.<span class="hljs-property">html</span>, <span class="hljs-string">&#x27;utf-8&#x27;</span>);
+        } <span class="hljs-keyword">else</span> {
+            res.<span class="hljs-property">original_end</span> = res.<span class="hljs-property">end</span>;
+            res.<span class="hljs-property">end</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">data</span>) {
+                <span class="hljs-keyword">if</span> (res.<span class="hljs-property">statusCode</span> === <span class="hljs-number">200</span>) {
+                    <span class="hljs-comment">// 设置缓存</span>
+                    cachePage.<span class="hljs-title function_">set</span>(cacheKey, {
+                        <span class="hljs-attr">html</span>: data,
+                    });
+                }
+                <span class="hljs-keyword">return</span> res.<span class="hljs-title function_">original_end</span>(data, <span class="hljs-string">&#x27;utf-8&#x27;</span>);
+            };
+        }
+    }
+
+    <span class="hljs-keyword">return</span> <span class="hljs-title function_">next</span>();
+
+}
+</code></pre>
+<h3 id="3.2">在 nuxt.config.js 中配置中间件</h3>
+<pre><code class="language-javascript"><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = {
+  <span class="hljs-comment">// ...</span>
+  <span class="hljs-attr">serverMiddleware</span>: [<span class="hljs-string">&quot;~/server/middleware/cache.js&quot;</span>],
+  <span class="hljs-comment">// ...</span>
+};
+</code></pre>
+
+        </article>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>Copyright© 2023-2023 季夏拾陆</p>
+        <p><a target="_blank" href="https://beian.miit.gov.cn">蜀ICP备2023007060号</a></p>
+      </div>
+    </footer>
+  </body>
+</html>
