@@ -1,13 +1,10 @@
 # 自动解析 markdown 生成静态.html
 
-只需要更新 md 文件并 push 到 github，自动生成 html 并发布。
-
 > 预览地址：[https://chinjiaqing.github.io/](https://chinjiaqing.github.io/)
 
 ## 实现原理
 
 主要是利用 [markdown-it](https://github.com/markdown-it/markdown-it) 将 markdown 文件解析成 html 内容再动态写入到.html 文件即可。
-每次 push 后利用 action 自动 build,再由 github-pages 发布为静态站点。
 
 ## 约定
 

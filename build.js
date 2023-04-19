@@ -32,7 +32,7 @@ const parseMarkdownTree = (item, topLevel = 2) => {
     ; (async () => {
         if (fs.existsSync(ARTICLE_FOLDER_NAME)) {
             deleteDir(path.join(ARTICLE_BACKUP_FOLDER_NAME))
-            fs.renameSync(ARTICLE_FOLDER_NAME, ARTICLE_BACKUP_FOLDER_NAME)
+            // fs.renameSync(ARTICLE_FOLDER_NAME, ARTICLE_BACKUP_FOLDER_NAME)
         }
         const markdownTree = dree.scan(MARKDOWN_FOLDER_NAME)
         if (markdownTree && markdownTree.children && markdownTree.children.length) {
@@ -44,10 +44,10 @@ const parseMarkdownTree = (item, topLevel = 2) => {
                     navHtmlGroup.push(`<nav><ul>${html}</ul></nav>`)
                 }
             } catch (err) {
-                if (fs.existsSync(ARTICLE_BACKUP_FOLDER_NAME)) {
-                    deleteDir(path.join(ARTICLE_FOLDER_NAME))
-                    fs.renameSync(ARTICLE_BACKUP_FOLDER_NAME, ARTICLE_FOLDER_NAME)
-                }
+                // if (fs.existsSync(ARTICLE_BACKUP_FOLDER_NAME)) {
+                //     deleteDir(path.join(ARTICLE_FOLDER_NAME))
+                //     fs.renameSync(ARTICLE_BACKUP_FOLDER_NAME, ARTICLE_FOLDER_NAME)
+                // }
             }
 
             // 生成首页

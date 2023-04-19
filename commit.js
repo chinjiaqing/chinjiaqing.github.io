@@ -19,7 +19,7 @@ const COMMIT_TYPES = {
 }
 if (COMMIT_TYPES[message]) message = COMMIT_TYPES[message]
 execSync(
-    `git add . && git commit -m"${message}" && git pull && git push `,
+    `node build && git add . && git commit -m"${message}" && git push `,
     (err, stdout, stderr) => {
         if (err) {
             console.log(err)
