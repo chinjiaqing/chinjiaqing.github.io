@@ -6,7 +6,7 @@ module.exports = {
 		root: ROOT_PATH,
 		markdown: path.join(ROOT_PATH, "markdown"),
 		article: path.join(ROOT_PATH, "article"),
-		backup:path.join(ROOT_PATH,'backup')
+		backup: path.join(ROOT_PATH, "backup"),
 	},
 	site: {
 		name: "季夏拾陆",
@@ -14,6 +14,29 @@ module.exports = {
 		description: "Chinjiaqing`s blog,Some writing about the front-end ...",
 		copyright: "蜀ICP备2023007060号",
 		author: "Chin Jiaqing",
+	},
+	resume: {
+		description:
+			"一名前端工程师，从事过SASS财务软件、电商、社区医药、直播等行业，对于web开发、小程序开发和移动端H5开发有丰富经验。",
+		skills: [
+			"Vue",
+			"Nodejs",
+			"Uniapp",
+			"Electron",
+			"PHP",
+			"Nuxtjs",
+			"SSR",
+			"Mysql",
+			"Vite",
+			"QianKun",
+			"Eggjs",
+			"Laravel",
+		],
+		github: "https://github.com/chinjiaqing",
+		email: "chinjiaqing@qq.com",
+		job: "前端工程师",
+		age: new Date().getFullYear() - 1996,
+		city: "四川·成都",
 	},
 	assets: {
 		css: {
