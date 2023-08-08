@@ -54,7 +54,7 @@ module.exports = {
 		},
 		js: {
 			common: [],
-			article: ["/assets/highlight/highlight.min.js"],
+			article: ["/assets/js/data.js", "/assets/highlight/highlight.min.js"],
 			index: [],
 		},
 	},

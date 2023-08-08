@@ -8,6 +8,7 @@
 :root {
 	--color-primary: #00b96b;
 	--color-bg:rgba(0, 185, 107,.7);
+	--color-bg-light:rgba(0, 185, 107,.05);
 	--color-error:#EA5455;
 	--color-warning:orange;
 }
@@ -20,11 +21,11 @@
 	padding: 0;
 }
 body {
-	font-family: "LXGW WenKai", sans-serif;
+	// font-family: "LXGW WenKai", sans-serif;
 	font-size: 10pt;
 	line-height: 1.5;
 	-webkit-text-size-adjust: 100%;
-	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.08);
+	// text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.18);
 	color: #262626;
 	min-height: 100vh;
 	width: 100vw;
@@ -106,4 +107,8 @@ a {
 
 ::-webkit-scrollbar {
 	width: 4px;
+}
+::-webkit-scrollbar-thumb {
+	background: #ddd;
+	border-radius: 3px;
 }
