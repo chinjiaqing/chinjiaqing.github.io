@@ -23,10 +23,11 @@ jobs:
       - uses: actions/checkout@v3
       - name: Use Node.js 16.x
         uses: actions/setup-node@v3
+      - uses: pnpm/action-setup@v2
         with:
           node-version: "16.x"
       - name: npm包安装
-        run: npm ci
+        run: pnpm install
       - name: 开始任务
         run: |
           node build.js
