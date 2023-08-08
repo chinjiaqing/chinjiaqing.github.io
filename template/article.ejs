@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title><%=config.site.name%></title>
+		<meta name="keywords" content="chinjiaqing" />
+		<meta name="description" content="Chinjiaqing`s blog,Some writing about the front-end ..." />
+		<title><%= title %></title>
+        <% css.forEach(function(s){ %>
+            <link rel="stylesheet" href="<%- s %>">
+        <% }) %>
+        <% js.forEach(function(s){ %>
+            <script src="<%- s %>"></script>
+        <% }) %>
+	</head>
+	<body>
+		<!-- <div class="mask"></div> -->
+		<div class="flex main container">
+			<div class="folder">
+				<div class="flex header">
+					<a href="/" title="首页" class="flex">
+						<img src="/assets/image/avatar.jpg" class="avatar" alt="" />
+						<%=config.site.name%></a
+					>
+				</div>
+				<div class="list flex flex-column"><%-navHtml%></div>
+			</div>
+			<div class="right">
+				<div class="flex header flex-x-end">
+					<div class="flex input-area">
+						<input type="text" placeholder="请输入关键字搜索" />
+						<span class="icon"><ion-icon name="search-outline"></ion-icon></span>
+						<ul class="options"></ul>
+					</div>
+					<div class="links flex">
+						<a href="/">首页 · HOME</a>
+						<a href="/about.html">关于 · ABOUT</a>
+					</div>
+				</div>
+				<!-- <div class="aside"></div>
+			    <div class="content"></div> -->
+				<div class="flex flex-y-start right-content">
+					<div class="content ">
+						<article>
+                            <h1><%=title%></h1>
+							<p class="datetime">🕓<span> <%=create_at%></span><span>⏳<%=readTimeStr%>(<%=countStr%>字)</span></p>
+                            <%-contentHtml%></article>
+					</div>
+					<div class="aside"><%- asideHtml %></div>
+				</div>
+			</div>
+		</div>
+
+		<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+		<script src="/assets/js/article.js"></script>
+	</body>
+</html>

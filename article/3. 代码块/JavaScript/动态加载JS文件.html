@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>季夏拾陆</title>
+		<meta name="keywords" content="chinjiaqing" />
+		<meta name="description" content="Chinjiaqing`s blog,Some writing about the front-end ..." />
+		<title>动态加载JS文件</title>
+        
+            <link rel="stylesheet" href="/assets/css/normalize.css">
+        
+            <link rel="stylesheet" href="/assets/css/base.css">
+        
+            <link rel="stylesheet" href="/assets/css/article.css">
+        
+            <link rel="stylesheet" href="/assets/highlight/styles/default.min.css">
+        
+            <link rel="stylesheet" href="/assets/highlight/styles/atom-one-light.min.css">
+        
+        
+            <script src="/assets/js/data.js"></script>
+        
+            <script src="/assets/highlight/highlight.min.js"></script>
+        
+	</head>
+	<body>
+		<!-- <div class="mask"></div> -->
+		<div class="flex main container">
+			<div class="folder">
+				<div class="flex header">
+					<a href="/" title="首页" class="flex">
+						<img src="/assets/image/avatar.jpg" class="avatar" alt="" />
+						季夏拾陆</a
+					>
+				</div>
+				<div class="list flex flex-column"><div class="top-1 flex item">
+						<ion-icon name="folder-outline"></ion-icon>
+						<span>1. WEB技术</span>
+						<ion-icon class="arrow" name="chevron-forward-outline"></ion-icon><div class="top-2 flex item">
+						<ion-icon name="folder-outline"></ion-icon>
+						<span>设计模式</span>
+						<ion-icon class="arrow" name="chevron-forward-outline"></ion-icon><div class="top-3 flex item file">
+								<ion-icon name="document-outline"></ion-icon>
+								<a href="/article/1. WEB技术/设计模式/单例模式.html">单例模式.md</a>
+							</div></div></div><div class="top-1 flex item">
+						<ion-icon name="folder-outline"></ion-icon>
+						<span>3. 代码块</span>
+						<ion-icon class="arrow" name="chevron-forward-outline"></ion-icon><div class="top-2 flex item">
+						<ion-icon name="folder-outline"></ion-icon>
+						<span>JavaScript</span>
+						<ion-icon class="arrow" name="chevron-forward-outline"></ion-icon><div class="top-3 flex item file">
+								<ion-icon name="document-outline"></ion-icon>
+								<a href="/article/3. 代码块/JavaScript/二进制运算-开关作用.html">二进制运算-开关作用.md</a>
+							</div><div class="top-3 flex item file">
+								<ion-icon name="document-outline"></ion-icon>
+								<a href="/article/3. 代码块/JavaScript/动态加载JS文件.html">动态加载JS文件.md</a>
+							</div></div></div></div>
+			</div>
+			<div class="right">
+				<div class="flex header flex-x-end">
+					<div class="flex input-area">
+						<input type="text" placeholder="请输入关键字搜索" />
+						<span class="icon"><ion-icon name="search-outline"></ion-icon></span>
+						<ul class="options"></ul>
+					</div>
+					<div class="links flex">
+						<a href="/">首页 · HOME</a>
+						<a href="/about.html">关于 · ABOUT</a>
+					</div>
+				</div>
+				<!-- <div class="aside"></div>
+			    <div class="content"></div> -->
+				<div class="flex flex-y-start right-content">
+					<div class="content ">
+						<article>
+                            <h1>动态加载JS文件</h1>
+							<p class="datetime">🕓<span> 2023-08-08 11:59:49</span><span>⏳2分17秒(0.6k字)</span></p>
+                            <!--
+ * @Author: Chin Jiaqing
+ * @Date: 2023-08-08 11:59:49
+ * @LastEditTime: 2023-08-08 11:59:52
+ * @LastEditors: Chin Jiaqing
+ * @Description: 动态加载script
+-->
+<p>在一些特殊的场景下，特别是一些库和框架的开发中，我们有时会去动态的加载 JS 文件并执行，下面是利用 Promise 进行了简单的封装</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">loadJS</span>(<span class="hljs-params">files, done</span>) {
+  <span class="hljs-comment">// 获取head标签</span>
+  <span class="hljs-keyword">const</span> head = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementsByTagName</span>(<span class="hljs-string">&#x27;head&#x27;</span>)[<span class="hljs-number">0</span>];
+  <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">all</span>(files.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">file</span> =&gt;</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> {
+      <span class="hljs-comment">// 创建script标签并添加到head</span>
+      <span class="hljs-keyword">const</span> s = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;script&#x27;</span>);
+      s.<span class="hljs-property">type</span> = <span class="hljs-string">&quot;text/javascript&quot;</span>;
+      s.<span class="hljs-property">async</span> = <span class="hljs-literal">true</span>;
+      s.<span class="hljs-property">src</span> = file;
+      <span class="hljs-comment">// 监听load事件，如果加载完成则resolve</span>
+      s.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;load&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> <span class="hljs-title function_">resolve</span>(), <span class="hljs-literal">false</span>);
+      head.<span class="hljs-title function_">appendChild</span>(s);
+    });
+  })).<span class="hljs-title function_">then</span>(done);  <span class="hljs-comment">// 所有均完成，执行用户的回调事件</span>
+}
+
+<span class="hljs-title function_">loadJS</span>([<span class="hljs-string">&quot;test1.js&quot;</span>, <span class="hljs-string">&quot;test2.js&quot;</span>], <span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-comment">// 用户的回调逻辑</span>
+});
+</code></pre>
+</article>
+					</div>
+					<div class="aside"><ul>
+</ul>
+</div>
+				</div>
+			</div>
+		</div>
+
+		<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+		<script src="/assets/js/article.js"></script>
+	</body>
+</html>
