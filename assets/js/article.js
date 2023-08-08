@@ -16,8 +16,7 @@ window.onload = () => {
 		}
 	}
 	handleFilterArticles({ children: window.__ARTICLES__ });
-	// const $topItems = document.querySelectorAll(".folder .item:not(.file)");
-	const $topItems = document.querySelectorAll(".folder .item");
+	const $topItems = document.querySelectorAll(".folder .item:not(.file)");
 
 	const removeOpenClass = (children) => {
 		let arr = Array.from(children);
@@ -29,8 +28,8 @@ window.onload = () => {
 		}
 	};
 	const bindFolderItemClick = (e) => {
+		e.stopPropagation();
 		let $e = e.target;
-		console.log("%c [ e ]-32", "font-size:13px; background:pink; color:#bf2c9f;", e, $e);
 		if ($e.classList.contains("file")) return;
 		if ($e.classList.contains("open")) {
 			$e.classList.remove("open");

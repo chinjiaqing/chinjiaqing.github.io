@@ -59,7 +59,7 @@ function handleMarkdownFile(item) {
 		}
 	}
 	if (item.type === "directory") {
-		if (item.children.length) {
+		if (item.children && item.children.length) {
 			for (let child of item.children) {
 				handleMarkdownFile(child);
 			}
@@ -118,7 +118,7 @@ function handleArticleCategoryHtml(item, level) {
 						<ion-icon name="folder-outline"></ion-icon>
 						<span>${title}</span>
 						<ion-icon class="arrow" name="chevron-forward-outline"></ion-icon>`;
-		if (item.children.length) {
+		if (item.children && item.children.length) {
 			for (let child of item.children) {
 				html += handleArticleCategoryHtml(child, level + 1);
 			}
@@ -128,7 +128,7 @@ function handleArticleCategoryHtml(item, level) {
 	return html;
 }
 
-function buildHomeHtml(recentHtml) {
+function buildHomeHtml(recentHtml,moreLink) {
 	const template = read(path.join(config.path.root, "template/index.ejs"));
 	let html = ejs.render(template, {
 		...config,
@@ -136,6 +136,7 @@ function buildHomeHtml(recentHtml) {
 		js: [...config.assets.js.common, ...config.assets.js.index],
 		keywordsText: config.site.keywords.join(","),
 		recentHtml,
+		moreLink,
 	});
 	write(path.join(config.path.root, "index.html"), html);
 }
@@ -177,5 +178,6 @@ function buildHomeHtml(recentHtml) {
                 </div>
 		`;
 	}
-	buildHomeHtml(recentHtml);
+	let m = articles[0] || ''
+	buildHomeHtml(recentHtml,m ? m.href : '');
 })();

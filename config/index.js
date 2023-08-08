@@ -43,7 +43,7 @@ module.exports = {
 			common: [
 				"/assets/css/normalize.css",
 				"/assets/css/base.css",
-				"https://cdn.bootcdn.net/ajax/libs/lxgw-wenkai-webfont/1.1.0/style.min.css",
+				// "https://cdn.bootcdn.net/ajax/libs/lxgw-wenkai-webfont/1.1.0/style.min.css",
 			],
 			article: [
 				"/assets/css/article.css",

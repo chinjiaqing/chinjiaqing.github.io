@@ -74,47 +74,47 @@
         <div class="update flex flex-column">
             <div class="flex flex-between">
                 <h3>更新</h3>
-                <a href="###">更多文章 >></a>
+                <a href="/article/3. 代码块/JavaScript/动态加载JS文件.html">更多文章 >></a>
             </div>
             <div class="list flex flex-column">
                 
 		<div class="item flex flex-column">
-                    <p class="flex"><span></span>2023-04-06 23:25:44</p>
+                    <p class="flex"><span></span>2023-08-08 11:59:49</p>
                     <div class="sub flex flex-column">
-                        <h4>解决Github连接不稳定</h4>
-                        <p>Github经常会出现即使翻墙也连不上的问题，经过搜索，发现修改host文件比较靠谱。修改host文件打开文件：C:\Windows\System32\drivers\etc\hosts访问比较慢的域名有：ithub.com、ithubusercontent.com等等。主要的还是ithub.com,然后在[https://ipcom](https://ip138.com)或者[https://www.ipaddress.com](https://www.ipaddress.com)查询一下域名对应的ip,按下面的格式添加到hosts文件中即可。```bashGitHubStart205.24</p>
-                        <a href="/article/Git/解决Github连接不稳定.html">查看全文</a>
+                        <h4>动态加载JS文件</h4>
+                        <p>在一些特殊的场景下，特别是一些库和框架的开发中，我们有时会去动态的加载JS文件并执行，下面是利用Promise进行了简单的封装```javascriptfunctionloadJS(files,done){//获取head标签consthead=document.getElementsByTagName('head')[0];Promise.all(files.map(file={returnnewPromise(resolve={//创建script标签并添加到headconsts=document.createElement('script');s.type="text/javascrip</p>
+                        <a href="/article/3. 代码块/JavaScript/动态加载JS文件.html">查看全文</a>
                     </div>
                 </div>
 		
 		<div class="item flex flex-column">
-                    <p class="flex"><span></span>2023-04-06 22:40:52</p>
+                    <p class="flex"><span></span>2023-08-08 11:40:39</p>
                     <div class="sub flex flex-column">
-                        <h4>Nuxt.js使用缓存</h4>
-                        <p>Nuxt的缓存可以分为组件级别的缓存，API级别的缓存和页面级别的缓存组件级别的缓存在nuxt.config.js中编写相关配置：```javascriptconstLRU=require("lrucache");//需要先安装该依赖module.exports={render:{bundleRenderer:{cache:LRU({max:1000,//最大的缓存个数maxAge:10006015,//缓存15分钟}),},},};```然后需要在vue组件上增加一些相关属性：```javascriptexportdefault{name:"AppHeader",props:["type"]</p>
-                        <a href="/article/Node.js/Nuxt.js/Nuxt.js使用缓存.html">查看全文</a>
+                        <h4>二进制运算-开关作用</h4>
+                        <p>二进制与或运算运算A&B两个是1才是1运算A|B只要有一个是1就是1开关作用现在假设有4个开关,通过二进制运算来判断是否打开开关C```javascriptvarFLAG_A=1;//0001开关AvarFLAG_B=2;//0010开关BvarFLAG_C=4;//0100开关CvarFLAG_D=8;//1000开关Dvarflags=5;//二进制的0101if(flags&FLAG_C){//...}//0101&0100=0100=>十六进制的4=>true```现在假设需要打开A、B、D三个开关，我们可以构造一个掩码变量```javascriptvarmask=FLAG_A|FLA</p>
+                        <a href="/article/3. 代码块/JavaScript/二进制运算-开关作用.html">查看全文</a>
                     </div>
                 </div>
 		
 		<div class="item flex flex-column">
-                    <p class="flex"><span></span>2023-04-05 23:47:14</p>
+                    <p class="flex"><span></span>2023-04-05 17:24:24</p>
                     <div class="sub flex flex-column">
-                        <h4>README</h4>
-                        <p>自动解析markdown生成静态.html预览地址：[https://chinjiaqing.github.io/](https://chinjiaqing.github.io/)实现原理主要是利用[markdownit](https://github.com/markdown-it/markdown-it)将markdown文件解析成html内容再动态写入到.html文件即可。约定markdown存放.md文件articlehtml输出文件config配置文件build.jsgithubaction执行的脚本文件libbuild相关的js目录assets静态资源template网页模板模块文</p>
-                        <a href="/article/关于本站/README.html">查看全文</a>
+                        <h4>单例模式</h4>
+                        <p>保证一个类仅有一个实例，并提供一个访问它的全局访问点。单例模式是一种常用的模式，有一些对象我们往往只需要一个，比如线程池、全局缓存、浏览器中的window对象等。在JavaScript开发中，单例模式的用途同样非常广泛。试想一下，当我们单击登录按钮的时候，页面中会出现一个登录浮窗，而这个登录浮窗是唯一的，无论单击多少次登录按钮，这个浮窗都只会被创建一次，那么这个登录浮窗就适合用单例模式来创建。初识单例模式要实现一个标准的单例模式并不复杂，无非是用一个变量来标志当前是否已经为某个类创建过对象，如果是，则在下一次获取该类的实例时，直接返回之前创建的对象。```javascriptconstSing</p>
+                        <a href="/article/1. WEB技术/设计模式/单例模式.html">查看全文</a>
                     </div>
                 </div>
 		
             </div>
             <div class="flex flex-center more">
-                <a href="###">更多文章 >></a>
+                <a href="/article/3. 代码块/JavaScript/动态加载JS文件.html">更多文章 >></a>
             </div>
         </div>
     </div>
     <footer class="footer">
         <div class="container flex flex-column">
             <p class="flex flex-center">Copyright© 2023-2023 季夏拾陆</p>
-            <p class="flex flex-center"><a href="###">蜀ICP备2023007060号</a></p>
+            <p class="flex flex-center"><a target="_blank" href="https://beian.miit.gov.cn">蜀ICP备2023007060号</a></p>
         </div>
     </footer>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
