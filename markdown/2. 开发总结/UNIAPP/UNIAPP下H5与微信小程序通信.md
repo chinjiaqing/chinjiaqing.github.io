@@ -9,6 +9,7 @@
 小程序需要做一个分享海报功能，海报内容需要动态生成。鉴于海报内容丰富，决定通过用H5渲染该页面，用`html2canvas` 绘制海报，最终将绘制好的图片base64传递给小程序。
 在小程序的webview与小程序通讯时，有这一样一条官方文档说明：
 > 网页向小程序 postMessage 时，会在特定时机（小程序后退、组件销毁、分享）触发并收到消息。e.detail = { data }，data 是多次 postMessage 的参数组成的数组
+
 所以，从H5页面postMessage时，小程序只会在以下几种情况接收到消息并触发事件：
 1. 页面跳转
 2. 用户点击了分享
@@ -16,7 +17,7 @@
 ## 基础代码
 ### 小程序
 需要给webview绑定onMessage事件。
-```vue
+```javascript
 <template>
 	<web-view  :src="src" @message="handleMessage"></web-view>
 </template>
