@@ -35,5 +35,5 @@ jobs:
       - name: 更新数据
         uses: JamesIves/github-pages-deploy-action@4.0.0
         with:
-          branch: main
+          branch: master
           folder: .
