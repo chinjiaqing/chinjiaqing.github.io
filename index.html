@@ -72,10 +72,19 @@
         <div class="update flex flex-column">
             <div class="flex flex-between">
                 <h3>更新</h3>
-                <a href="/article/3. 代码块/JavaScript/动态加载JS文件.html">更多文章 >></a>
+                <a href="/article/2. 开发总结/UNIAPP/UNIAPP下H5与微信小程序通信.html">更多文章 >></a>
             </div>
             <div class="list flex flex-column">
                 
+		<div class="item flex flex-column">
+                    <p class="flex"><span></span>2023-08-10 15:21:16</p>
+                    <div class="sub flex flex-column">
+                        <h4>UNIAPP下H5与微信小程序通信</h4>
+                        <p>需求背景小程序需要做一个分享海报功能，海报内容需要动态生成。鉴于海报内容丰富，决定通过用H5渲染该页面，用tml2canvas绘制海报，最终将绘制好的图片base64传递给小程序。在小程序的webview与小程序通讯时，有这一样一条官方文档说明：网页向小程序postMessage时，会在特定时机（小程序后退、组件销毁、分享）触发并收到消息。e.detail={data}，data是多次postMessage的参数组成的数组所以，从H5页面postMessage时，小程序只会在以下几种情况接收到消息并触发事件：页面跳转用户点击了分享组件销毁基础代码小程序需要给webview绑定onMessage</p>
+                        <a href="/article/2. 开发总结/UNIAPP/UNIAPP下H5与微信小程序通信.html">查看全文</a>
+                    </div>
+                </div>
+		
 		<div class="item flex flex-column">
                     <p class="flex"><span></span>2023-08-08 11:59:49</p>
                     <div class="sub flex flex-column">
@@ -94,18 +103,9 @@
                     </div>
                 </div>
 		
-		<div class="item flex flex-column">
-                    <p class="flex"><span></span>2023-04-05 17:24:24</p>
-                    <div class="sub flex flex-column">
-                        <h4>单例模式</h4>
-                        <p>保证一个类仅有一个实例，并提供一个访问它的全局访问点。单例模式是一种常用的模式，有一些对象我们往往只需要一个，比如线程池、全局缓存、浏览器中的window对象等。在JavaScript开发中，单例模式的用途同样非常广泛。试想一下，当我们单击登录按钮的时候，页面中会出现一个登录浮窗，而这个登录浮窗是唯一的，无论单击多少次登录按钮，这个浮窗都只会被创建一次，那么这个登录浮窗就适合用单例模式来创建。初识单例模式要实现一个标准的单例模式并不复杂，无非是用一个变量来标志当前是否已经为某个类创建过对象，如果是，则在下一次获取该类的实例时，直接返回之前创建的对象。```javascriptconstSing</p>
-                        <a href="/article/1. WEB技术/设计模式/单例模式.html">查看全文</a>
-                    </div>
-                </div>
-		
             </div>
             <div class="flex flex-center more">
-                <a href="/article/3. 代码块/JavaScript/动态加载JS文件.html">更多文章 >></a>
+                <a href="/article/2. 开发总结/UNIAPP/UNIAPP下H5与微信小程序通信.html">更多文章 >></a>
             </div>
         </div>
     </div>
