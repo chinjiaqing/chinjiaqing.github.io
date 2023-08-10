@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>季夏拾陆</title>
+		<meta name="keywords" content="chinjiaqing" />
+		<meta name="description" content="Chinjiaqing`s blog,Some writing about the front-end ..." />
+		<title>UNIAPP下H5与微信小程序通信</title>
+        
+            <link rel="stylesheet" href="/assets/css/normalize.css">
+        
+            <link rel="stylesheet" href="/assets/css/base.css">
+        
+            <link rel="stylesheet" href="/assets/css/article.css">
+        
+            <link rel="stylesheet" href="/assets/highlight/styles/default.min.css">
+        
+            <link rel="stylesheet" href="/assets/highlight/styles/atom-one-light.min.css">
+        
+        
+            <script src="/assets/js/data.js"></script>
+        
+            <script src="/assets/highlight/highlight.min.js"></script>
+        
+	</head>
+	<body>
+		<!-- <div class="mask"></div> -->
+		<div class="flex main container">
+			<div class="folder">
+				<div class="flex header">
+					<a href="/" title="首页" class="flex">
+						<img src="/assets/image/avatar.jpg" class="avatar" alt="" />
+						季夏拾陆</a
+					>
+				</div>
+				<div class="list flex flex-column"><div class="top-1 flex item">
+						<ion-icon name="folder-outline"></ion-icon>
+						<span>1. WEB技术</span>
+						<ion-icon class="arrow" name="chevron-forward-outline"></ion-icon><div class="top-2 flex item">
+						<ion-icon name="folder-outline"></ion-icon>
+						<span>设计模式</span>
+						<ion-icon class="arrow" name="chevron-forward-outline"></ion-icon><div class="top-3 flex item file">
+								<ion-icon name="document-outline"></ion-icon>
+								<a href="/article/1. WEB技术/设计模式/单例模式.html">单例模式.md</a>
+							</div></div></div><div class="top-1 flex item">
+						<ion-icon name="folder-outline"></ion-icon>
+						<span>2. 开发总结</span>
+						<ion-icon class="arrow" name="chevron-forward-outline"></ion-icon><div class="top-2 flex item">
+						<ion-icon name="folder-outline"></ion-icon>
+						<span>UNIAPP</span>
+						<ion-icon class="arrow" name="chevron-forward-outline"></ion-icon><div class="top-3 flex item file">
+								<ion-icon name="document-outline"></ion-icon>
+								<a href="/article/2. 开发总结/UNIAPP/UNIAPP下H5与微信小程序通信.html">UNIAPP下H5与微信小程序通信.md</a>
+							</div></div></div><div class="top-1 flex item">
+						<ion-icon name="folder-outline"></ion-icon>
+						<span>3. 代码块</span>
+						<ion-icon class="arrow" name="chevron-forward-outline"></ion-icon><div class="top-2 flex item">
+						<ion-icon name="folder-outline"></ion-icon>
+						<span>JavaScript</span>
+						<ion-icon class="arrow" name="chevron-forward-outline"></ion-icon><div class="top-3 flex item file">
+								<ion-icon name="document-outline"></ion-icon>
+								<a href="/article/3. 代码块/JavaScript/二进制运算-开关作用.html">二进制运算-开关作用.md</a>
+							</div><div class="top-3 flex item file">
+								<ion-icon name="document-outline"></ion-icon>
+								<a href="/article/3. 代码块/JavaScript/动态加载JS文件.html">动态加载JS文件.md</a>
+							</div></div></div></div>
+			</div>
+			<div class="right">
+				<div class="flex header flex-x-end">
+					<div class="flex input-area">
+						<input type="text" placeholder="请输入关键字搜索" />
+						<span class="icon"><ion-icon name="search-outline"></ion-icon></span>
+						<ul class="options"></ul>
+					</div>
+					<div class="links flex">
+						<a href="/">首页 · HOME</a>
+						<a href="/about.html">关于 · ABOUT</a>
+					</div>
+				</div>
+				<!-- <div class="aside"></div>
+			    <div class="content"></div> -->
+				<div class="flex flex-y-start right-content">
+					<div class="content ">
+						<article>
+                            <h1>UNIAPP下H5与微信小程序通信</h1>
+							<p class="datetime">🕓<span> 2023-08-10 15:21:16</span><span>⏳6分6秒(1.7k字)</span></p>
+                            <!--
+ * @Author: Chin Jiaqing
+ * @Date: 2023-08-10 15:21:16
+ * @LastEditTime: 2023-08-10 15:21:41
+ * @LastEditors: Chin Jiaqing
+ * @Description: uniapp下H5与微信小程序通信
+-->
+<h2 id="1">需求背景</h2>
+<p>小程序需要做一个分享海报功能，海报内容需要动态生成。鉴于海报内容丰富，决定通过用H5渲染该页面，用<code>html2canvas</code> 绘制海报，最终将绘制好的图片base64传递给小程序。<br>
+在小程序的webview与小程序通讯时，有这一样一条官方文档说明：</p>
+<blockquote>
+<p>网页向小程序 postMessage 时，会在特定时机（小程序后退、组件销毁、分享）触发并收到消息。e.detail = { data }，data 是多次 postMessage 的参数组成的数组<br>
+所以，从H5页面postMessage时，小程序只会在以下几种情况接收到消息并触发事件：</p>
+</blockquote>
+<ol>
+<li>页面跳转</li>
+<li>用户点击了分享</li>
+<li>组件销毁</li>
+</ol>
+<h2 id="2">基础代码</h2>
+<h3 id="2.1">小程序</h3>
+<p>需要给webview绑定onMessage事件。</p>
+<pre><code class="language-vue">&lt;template&gt;
+	&lt;web-view  :src=&quot;src&quot; @message=&quot;handleMessage&quot;&gt;&lt;/web-view&gt;
+&lt;/template&gt;
+&lt;script&gt;
+	export default {
+		data() {
+			return {
+				src:'',
+			}
+		},
+		onLoad(e) {
+			this.src  = e.src || ''
+		},
+		methods: {
+			handleMessage(e){
+                console.log(e)
+				let actions = e.detail.data
+				let imageAction = actions.filter(v=&gt;v.action == 'renderImage')
+				if(imageAction &amp;&amp; imageAction[0]){
+					let action = imageAction[0]
+					// handle onMessage Event
+				}
+			}
+		}
+	}
+&lt;/script&gt;
+</code></pre>
+<h3 id="2.2">H5</h3>
+<pre><code class="language-html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>测试<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>webview postMessage test<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- 微信JS SDK --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://res.wx.qq.com/open/js/jweixin-1.4.0.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- UNIAPP WEBVIEW SDK --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./uni.webview.1.5.5.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- HTML2CANVAS --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./html2canvas.hertzen.com_dist_html2canvas.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+        <span class="hljs-variable language_">window</span>.<span class="hljs-property">onload</span> = <span class="hljs-function">() =&gt;</span>{
+            <span class="hljs-title function_">html2canvas</span>(<span class="hljs-variable language_">document</span>.<span class="hljs-property">body</span>,{
+                <span class="hljs-attr">useCORS</span>:<span class="hljs-literal">true</span>,
+                <span class="hljs-attr">allowTaint</span>:<span class="hljs-literal">true</span>,
+            }).<span class="hljs-title function_">then</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">canvas</span>) {
+                <span class="hljs-keyword">const</span> base64 = canvas.<span class="hljs-title function_">toDataURL</span>(<span class="hljs-string">&#x27;image/jpeg&#x27;</span>,<span class="hljs-number">1</span>)
+                 uni.<span class="hljs-title function_">postMessage</span>({
+                    <span class="hljs-attr">data</span>: {
+                        <span class="hljs-attr">action</span>: <span class="hljs-string">&#x27;renderImage&#x27;</span>,
+                        base64,
+                    }
+                });
+                <span class="hljs-comment">//  操作微信小程序 后退一页</span>
+                uni.<span class="hljs-title function_">navigateBack</span>({ <span class="hljs-attr">delta</span>: <span class="hljs-number">1</span> })
+            });
+        }
+    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre>
+<h2 id="3">页面跳转实现消息接收</h2>
+<p>在上诉代码中，H5加载完成后，html2canvas完成绘制，并控制小程序后退一页，最终小程序监听到了消息，如下图：<br>
+<img src="/image/action.png" alt="action image"></p>
+<h2 id="4">组件销毁</h2>
+<p>原理跟页面跳转差不多，可以通过页面重定向再后退回当前页面，或者v-if销毁webview组件</p>
+<h2 id="5">总结</h2>
+<p>方案都不是很完美，都要造成页面跳转，体验不太好。</p>
+</article>
+					</div>
+					<div class="aside"><ul>
+<li class="level-2"><a href="#1">1 需求背景</a></li><li class="level-2"><a href="#2">2 基础代码</a></li><li class="level-3"><a href="#2.1">2.1 小程序</a></li><li class="level-3"><a href="#2.2">2.2 H5</a></li><li class="level-2"><a href="#3">3 页面跳转实现消息接收</a></li><li class="level-2"><a href="#4">4 组件销毁</a></li><li class="level-2"><a href="#5">5 总结</a></li></ul>
+</div>
+				</div>
+			</div>
+		</div>
+
+		<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+		<script src="/assets/js/article.js"></script>
+	</body>
+</html>
