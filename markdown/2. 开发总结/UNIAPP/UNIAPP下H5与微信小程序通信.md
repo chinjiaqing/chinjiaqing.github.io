@@ -84,7 +84,7 @@
 ```
 ## 页面跳转实现消息接收
 在上诉代码中，H5加载完成后，html2canvas完成绘制，并控制小程序后退一页，最终小程序监听到了消息，如下图：
-![action image](/image/action.png)
+![action image](/assets/image/action.png)
 ## 组件销毁
 原理跟页面跳转差不多，可以通过页面重定向再后退回当前页面，或者v-if销毁webview组件
 ## 总结
