@@ -6,7 +6,7 @@
 		<title>季夏拾陆</title>
 		<meta name="keywords" content="chinjiaqing" />
 		<meta name="description" content="Chinjiaqing`s blog,Some writing about the front-end ..." />
-		<title>动态加载JS文件</title>
+		<title>二进制运算-开关作用</title>
         
             <link rel="stylesheet" href="/assets/css/normalize.css">
         
@@ -38,34 +38,34 @@
 				</div>
 				<div class="list flex flex-column"><div class="top-1 flex item">
 						<ion-icon name="folder-outline"></ion-icon>
-						<span>WEB技术</span>
+						<span>1. WEB技术</span>
 						<ion-icon class="arrow" name="chevron-forward-outline"></ion-icon><div class="top-2 flex item">
 						<ion-icon name="folder-outline"></ion-icon>
 						<span>设计模式</span>
 						<ion-icon class="arrow" name="chevron-forward-outline"></ion-icon><div class="top-3 flex item file">
 								<ion-icon name="document-outline"></ion-icon>
-								<a href="/article/WEB技术/设计模式/单例模式.html">单例模式.md</a>
+								<a href="/article/1. WEB技术/设计模式/单例模式.html">单例模式.md</a>
 							</div></div></div><div class="top-1 flex item">
 						<ion-icon name="folder-outline"></ion-icon>
-						<span>个人成长</span>
+						<span>2. 开发总结</span>
 						<ion-icon class="arrow" name="chevron-forward-outline"></ion-icon></div><div class="top-1 flex item">
 						<ion-icon name="folder-outline"></ion-icon>
-						<span>代码块</span>
+						<span>3. 代码块</span>
 						<ion-icon class="arrow" name="chevron-forward-outline"></ion-icon><div class="top-2 flex item">
 						<ion-icon name="folder-outline"></ion-icon>
 						<span>JavaScript</span>
 						<ion-icon class="arrow" name="chevron-forward-outline"></ion-icon><div class="top-3 flex item file">
 								<ion-icon name="document-outline"></ion-icon>
-								<a href="/article/代码块/JavaScript/二进制运算-开关作用.html">二进制运算-开关作用.md</a>
+								<a href="/article/3. 代码块/JavaScript/二进制运算-开关作用.html">二进制运算-开关作用.md</a>
 							</div><div class="top-3 flex item file">
 								<ion-icon name="document-outline"></ion-icon>
-								<a href="/article/代码块/JavaScript/动态加载JS文件.html">动态加载JS文件.md</a>
+								<a href="/article/3. 代码块/JavaScript/动态加载JS文件.html">动态加载JS文件.md</a>
 							</div></div></div><div class="top-1 flex item">
 						<ion-icon name="folder-outline"></ion-icon>
-						<span>开发总结</span>
+						<span>4. 个人成长</span>
 						<ion-icon class="arrow" name="chevron-forward-outline"></ion-icon></div><div class="top-1 flex item">
 						<ion-icon name="folder-outline"></ion-icon>
-						<span>随笔</span>
+						<span>5. 随笔</span>
 						<ion-icon class="arrow" name="chevron-forward-outline"></ion-icon></div></div>
 			</div>
 			<div class="right">
@@ -85,41 +85,58 @@
 				<div class="flex flex-y-start right-content">
 					<div class="content ">
 						<article>
-                            <h1>动态加载JS文件</h1>
-							<p class="datetime">🕓<span> 2023-08-08 11:59:49</span><span>⏳2分17秒(0.6k字)</span></p>
+                            <h1>二进制运算-开关作用</h1>
+							<p class="datetime">🕓<span> 2023-08-08 11:40:39</span><span>⏳2分49秒(0.8k字)</span></p>
                             <!--
  * @Author: Chin Jiaqing
- * @Date: 2023-08-08 11:59:49
- * @LastEditTime: 2023-08-08 11:59:52
+ * @Date: 2023-08-08 11:40:39
+ * @LastEditTime: 2023-08-08 11:42:16
  * @LastEditors: Chin Jiaqing
- * @Description: 动态加载script
+ * @Description: 二进制运算实现开关作用
 -->
-<p>在一些特殊的场景下，特别是一些库和框架的开发中，我们有时会去动态的加载 JS 文件并执行，下面是利用 Promise 进行了简单的封装</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">loadJS</span>(<span class="hljs-params">files, done</span>) {
-  <span class="hljs-comment">// 获取head标签</span>
-  <span class="hljs-keyword">const</span> head = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementsByTagName</span>(<span class="hljs-string">&#x27;head&#x27;</span>)[<span class="hljs-number">0</span>];
-  <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">all</span>(files.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">file</span> =&gt;</span> {
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> {
-      <span class="hljs-comment">// 创建script标签并添加到head</span>
-      <span class="hljs-keyword">const</span> s = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;script&#x27;</span>);
-      s.<span class="hljs-property">type</span> = <span class="hljs-string">&quot;text/javascript&quot;</span>;
-      s.<span class="hljs-property">async</span> = <span class="hljs-literal">true</span>;
-      s.<span class="hljs-property">src</span> = file;
-      <span class="hljs-comment">// 监听load事件，如果加载完成则resolve</span>
-      s.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;load&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> <span class="hljs-title function_">resolve</span>(), <span class="hljs-literal">false</span>);
-      head.<span class="hljs-title function_">appendChild</span>(s);
-    });
-  })).<span class="hljs-title function_">then</span>(done);  <span class="hljs-comment">// 所有均完成，执行用户的回调事件</span>
-}
+<h2 id="1">二进制 与 或 运算</h2>
+<ul>
+<li><code>与</code> 运算  A&amp;B<br>
+两个是1才是1</li>
+<li><code>或</code> 运算  A|B<br>
+只要有一个是1就是1</li>
+</ul>
+<h2 id="2">开关作用</h2>
+<p>现在假设有4个开关,通过二进制运算来判断是否打开开关C</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-variable constant_">FLAG_A</span> = <span class="hljs-number">1</span>; <span class="hljs-comment">// 0001  开关A</span>
+<span class="hljs-keyword">var</span> <span class="hljs-variable constant_">FLAG_B</span> = <span class="hljs-number">2</span>; <span class="hljs-comment">// 0010  开关B</span>
+<span class="hljs-keyword">var</span> <span class="hljs-variable constant_">FLAG_C</span> = <span class="hljs-number">4</span>; <span class="hljs-comment">// 0100  开关C</span>
+<span class="hljs-keyword">var</span> <span class="hljs-variable constant_">FLAG_D</span> = <span class="hljs-number">8</span>; <span class="hljs-comment">// 1000  开关D</span>
 
-<span class="hljs-title function_">loadJS</span>([<span class="hljs-string">&quot;test1.js&quot;</span>, <span class="hljs-string">&quot;test2.js&quot;</span>], <span class="hljs-function">() =&gt;</span> {
-  <span class="hljs-comment">// 用户的回调逻辑</span>
-});
+<span class="hljs-keyword">var</span> flags = <span class="hljs-number">5</span>; <span class="hljs-comment">//二进制的 0101 </span>
+
+<span class="hljs-keyword">if</span>(flags &amp; <span class="hljs-variable constant_">FLAG_C</span>) {
+    <span class="hljs-comment">// ...</span>
+}
+<span class="hljs-comment">// 0101 &amp; 0100 =&gt; 0100 =&gt; 十六进制的 4 =&gt; true</span>
+
+</code></pre>
+<p>现在假设需要打开A、B、D三个开关，我们可以构造一个掩码变量</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">var</span> mask = <span class="hljs-variable constant_">FLAG_A</span> | <span class="hljs-variable constant_">FLAG_B</span> | <span class="hljs-variable constant_">FLAG_D</span>;
+<span class="hljs-comment">// 0001 | 0010 | 1000 =&gt; 1011</span>
+</code></pre>
+<p>有了掩码，二进制或运算可以确保打开指定的开关</p>
+<pre><code class="language-javascript">flags = flags | mask;
+</code></pre>
+<p>上面代码中，计算后得到的flags变量，代表三个开关的二进制位都打开了。<br>
+二进制与运算可以将当前设置中凡是与开关设置不一样的项，全部关闭。</p>
+<pre><code class="language-javascript">flags = flags &amp; mask;
+</code></pre>
+<p>异或运算可以切换（toggle）当前设置，即第一次执行可以得到当前设置的相反值，再执行一次又得到原来的值。</p>
+<pre><code class="language-javascript">flags = flags ^ mask;
+</code></pre>
+<p>二进制否运算可以翻转当前设置，即原设置为0，运算后变为1；原设置为1，运算后变为0。</p>
+<pre><code class="language-javascript">flags = ~flags;
 </code></pre>
 </article>
 					</div>
 					<div class="aside"><ul>
-</ul>
+<li class="level-2"><a href="#1">1 二进制 与 或 运算</a></li><li class="level-2"><a href="#2">2 开关作用</a></li></ul>
 </div>
 				</div>
 			</div>
