@@ -6,7 +6,7 @@
 		<title>季夏拾陆</title>
 		<meta name="keywords" content="chinjiaqing" />
 		<meta name="description" content="Chinjiaqing`s blog,Some writing about the front-end ..." />
-		<title>动态加载JS文件</title>
+		<title>UNIAPP_小记</title>
         
             <link rel="stylesheet" href="/assets/css/normalize.css">
         
@@ -89,41 +89,25 @@
 				<div class="flex flex-y-start right-content">
 					<div class="content ">
 						<article>
-                            <h1>动态加载JS文件</h1>
-							<p class="datetime">🕓<span> 2023-08-08 11:59:49</span><span>⏳2分17秒(0.6k字)</span></p>
-                            <!--
- * @Author: Chin Jiaqing
- * @Date: 2023-08-08 11:59:49
- * @LastEditTime: 2023-08-08 11:59:52
- * @LastEditors: Chin Jiaqing
- * @Description: 动态加载script
--->
-<p>在一些特殊的场景下，特别是一些库和框架的开发中，我们有时会去动态的加载 JS 文件并执行，下面是利用 Promise 进行了简单的封装</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">loadJS</span>(<span class="hljs-params">files, done</span>) {
-  <span class="hljs-comment">// 获取head标签</span>
-  <span class="hljs-keyword">const</span> head = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementsByTagName</span>(<span class="hljs-string">&#x27;head&#x27;</span>)[<span class="hljs-number">0</span>];
-  <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">all</span>(files.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">file</span> =&gt;</span> {
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> {
-      <span class="hljs-comment">// 创建script标签并添加到head</span>
-      <span class="hljs-keyword">const</span> s = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;script&#x27;</span>);
-      s.<span class="hljs-property">type</span> = <span class="hljs-string">&quot;text/javascript&quot;</span>;
-      s.<span class="hljs-property">async</span> = <span class="hljs-literal">true</span>;
-      s.<span class="hljs-property">src</span> = file;
-      <span class="hljs-comment">// 监听load事件，如果加载完成则resolve</span>
-      s.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;load&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> <span class="hljs-title function_">resolve</span>(), <span class="hljs-literal">false</span>);
-      head.<span class="hljs-title function_">appendChild</span>(s);
-    });
-  })).<span class="hljs-title function_">then</span>(done);  <span class="hljs-comment">// 所有均完成，执行用户的回调事件</span>
-}
-
-<span class="hljs-title function_">loadJS</span>([<span class="hljs-string">&quot;test1.js&quot;</span>, <span class="hljs-string">&quot;test2.js&quot;</span>], <span class="hljs-function">() =&gt;</span> {
-  <span class="hljs-comment">// 用户的回调逻辑</span>
-});
-</code></pre>
+                            <h1>UNIAPP_小记</h1>
+							<p class="datetime">🕓<span> 2023-08-15 10:12:26</span><span>⏳1分47秒(0.5k字)</span></p>
+                            <h3 id="0.1">webview注意事项：</h3>
+<p><a href="https://developers.weixin.qq.com/miniprogram/dev/component/web-view.html">https://developers.weixin.qq.com/miniprogram/dev/component/web-view.html</a></p>
+<ul>
+<li>webview的网页url域名需要加入域名白名单</li>
+<li>在 iOS 中，若存在JSSDK接口调用无响应的情况，可在 web-view 的 src 后面加个#wechat_redirect解决</li>
+<li>web-view 网页与小程序之间不支持除 JSSDK 提供的接口之外的通信</li>
+<li>不可自定义导航栏，webview强制全屏且无法在上面覆盖小程序布局</li>
+</ul>
+<h3 id="0.2">webview调试</h3>
+<ul>
+<li>真机调试的话，给网页添加vConsole:<a href="https://github.com/Tencent/vConsole/blob/dev/README_CN.md">https://github.com/Tencent/vConsole/blob/dev/README_CN.md</a></li>
+<li>模拟器页面的右下角有个debug按钮，可调试webview网页</li>
+</ul>
 </article>
 					</div>
 					<div class="aside"><ul>
-</ul>
+<li class="level-3"><a href="#0.1">0.1 webview注意事项：</a></li><li class="level-3"><a href="#0.2">0.2 webview调试</a></li></ul>
 </div>
 				</div>
 			</div>

@@ -6,7 +6,7 @@
 		<title>季夏拾陆</title>
 		<meta name="keywords" content="chinjiaqing" />
 		<meta name="description" content="Chinjiaqing`s blog,Some writing about the front-end ..." />
-		<title>动态加载JS文件</title>
+		<title>JS常见utils工具类函数</title>
         
             <link rel="stylesheet" href="/assets/css/normalize.css">
         
@@ -89,41 +89,29 @@
 				<div class="flex flex-y-start right-content">
 					<div class="content ">
 						<article>
-                            <h1>动态加载JS文件</h1>
-							<p class="datetime">🕓<span> 2023-08-08 11:59:49</span><span>⏳2分17秒(0.6k字)</span></p>
-                            <!--
- * @Author: Chin Jiaqing
- * @Date: 2023-08-08 11:59:49
- * @LastEditTime: 2023-08-08 11:59:52
- * @LastEditors: Chin Jiaqing
- * @Description: 动态加载script
--->
-<p>在一些特殊的场景下，特别是一些库和框架的开发中，我们有时会去动态的加载 JS 文件并执行，下面是利用 Promise 进行了简单的封装</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">loadJS</span>(<span class="hljs-params">files, done</span>) {
-  <span class="hljs-comment">// 获取head标签</span>
-  <span class="hljs-keyword">const</span> head = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementsByTagName</span>(<span class="hljs-string">&#x27;head&#x27;</span>)[<span class="hljs-number">0</span>];
-  <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">all</span>(files.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">file</span> =&gt;</span> {
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> {
-      <span class="hljs-comment">// 创建script标签并添加到head</span>
-      <span class="hljs-keyword">const</span> s = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;script&#x27;</span>);
-      s.<span class="hljs-property">type</span> = <span class="hljs-string">&quot;text/javascript&quot;</span>;
-      s.<span class="hljs-property">async</span> = <span class="hljs-literal">true</span>;
-      s.<span class="hljs-property">src</span> = file;
-      <span class="hljs-comment">// 监听load事件，如果加载完成则resolve</span>
-      s.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;load&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> <span class="hljs-title function_">resolve</span>(), <span class="hljs-literal">false</span>);
-      head.<span class="hljs-title function_">appendChild</span>(s);
-    });
-  })).<span class="hljs-title function_">then</span>(done);  <span class="hljs-comment">// 所有均完成，执行用户的回调事件</span>
+                            <h1>JS常见utils工具类函数</h1>
+							<p class="datetime">🕓<span> 2023-08-15 10:12:26</span><span>⏳1分26秒(0.4k字)</span></p>
+                            <h3 id="0.1">16进制颜色转rgba</h3>
+<pre><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">hexToRgba</span>(<span class="hljs-params">hexColor, alpha = <span class="hljs-number">0.5</span></span>) {
+	<span class="hljs-comment">// 移除 # 号并提取颜色值</span>
+	<span class="hljs-keyword">let</span> hex = hexColor.<span class="hljs-title function_">replace</span>(<span class="hljs-string">&quot;#&quot;</span>, <span class="hljs-string">&quot;&quot;</span>);
+	<span class="hljs-comment">// 将颜色值拆分成 R、G、B 三个部分</span>
+	<span class="hljs-keyword">let</span> r = <span class="hljs-built_in">parseInt</span>(hex.<span class="hljs-title function_">substring</span>(<span class="hljs-number">0</span>, <span class="hljs-number">2</span>), <span class="hljs-number">16</span>);
+	<span class="hljs-keyword">let</span> g = <span class="hljs-built_in">parseInt</span>(hex.<span class="hljs-title function_">substring</span>(<span class="hljs-number">2</span>, <span class="hljs-number">4</span>), <span class="hljs-number">16</span>);
+	<span class="hljs-keyword">let</span> b = <span class="hljs-built_in">parseInt</span>(hex.<span class="hljs-title function_">substring</span>(<span class="hljs-number">4</span>, <span class="hljs-number">6</span>), <span class="hljs-number">16</span>);
+	<span class="hljs-comment">// 转换为 RGBA 格式并添加透明度</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-string">`rgba(<span class="hljs-subst">${r}</span>, <span class="hljs-subst">${g}</span>, <span class="hljs-subst">${b}</span>, <span class="hljs-subst">${alpha}</span>)`</span>;
 }
-
-<span class="hljs-title function_">loadJS</span>([<span class="hljs-string">&quot;test1.js&quot;</span>, <span class="hljs-string">&quot;test2.js&quot;</span>], <span class="hljs-function">() =&gt;</span> {
-  <span class="hljs-comment">// 用户的回调逻辑</span>
-});
+</code></pre>
+<h3 id="0.2">获取类型</h3>
+<pre><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">getType</span> (o) {
+  <span class="hljs-keyword">return</span> <span class="hljs-title class_">Object</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">toString</span>.<span class="hljs-title function_">call</span>(o).<span class="hljs-title function_">match</span>(<span class="hljs-regexp">/\[object (.*?)\]/</span>)[<span class="hljs-number">1</span>].<span class="hljs-title function_">toLowerCase</span>()
+}
 </code></pre>
 </article>
 					</div>
 					<div class="aside"><ul>
-</ul>
+<li class="level-3"><a href="#0.1">0.1 16进制颜色转rgba</a></li><li class="level-3"><a href="#0.2">0.2 获取类型</a></li></ul>
 </div>
 				</div>
 			</div>
