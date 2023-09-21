@@ -6,7 +6,7 @@
 		<title>季夏拾陆</title>
 		<meta name="keywords" content="chinjiaqing" />
 		<meta name="description" content="Chinjiaqing`s blog,Some writing about the front-end ..." />
-		<title>二进制运算-开关作用</title>
+		<title>UNIAPP_小记</title>
         
             <link rel="stylesheet" href="/assets/css/normalize.css">
         
@@ -70,9 +70,6 @@
 							</div><div class="top-3 flex item file">
 								<ion-icon name="document-outline"></ion-icon>
 								<a href="/article/3. 代码块/JavaScript/动态加载JS文件.html">动态加载JS文件.md</a>
-							</div><div class="top-3 flex item file">
-								<ion-icon name="document-outline"></ion-icon>
-								<a href="/article/3. 代码块/JavaScript/完整实现类型判断.html">完整实现类型判断.md</a>
 							</div></div></div></div>
 			</div>
 			<div class="right">
@@ -92,58 +89,25 @@
 				<div class="flex flex-y-start right-content">
 					<div class="content ">
 						<article>
-                            <h1>二进制运算-开关作用</h1>
-							<p class="datetime">🕓<span> 2023-08-08 11:40:39</span><span>⏳2分49秒(0.8k字)</span></p>
-                            <!--
- * @Author: Chin Jiaqing
- * @Date: 2023-08-08 11:40:39
- * @LastEditTime: 2023-08-08 11:42:16
- * @LastEditors: Chin Jiaqing
- * @Description: 二进制运算实现开关作用
--->
-<h2 id="1">二进制 与 或 运算</h2>
+                            <h1>UNIAPP_小记</h1>
+							<p class="datetime">🕓<span> 2023-08-15 10:12:26</span><span>⏳1分47秒(0.5k字)</span></p>
+                            <h3 id="0.1">webview注意事项：</h3>
+<p><a href="https://developers.weixin.qq.com/miniprogram/dev/component/web-view.html">https://developers.weixin.qq.com/miniprogram/dev/component/web-view.html</a></p>
 <ul>
-<li><code>与</code> 运算  A&amp;B<br>
-两个是1才是1</li>
-<li><code>或</code> 运算  A|B<br>
-只要有一个是1就是1</li>
+<li>webview的网页url域名需要加入域名白名单</li>
+<li>在 iOS 中，若存在JSSDK接口调用无响应的情况，可在 web-view 的 src 后面加个#wechat_redirect解决</li>
+<li>web-view 网页与小程序之间不支持除 JSSDK 提供的接口之外的通信</li>
+<li>不可自定义导航栏，webview强制全屏且无法在上面覆盖小程序布局</li>
 </ul>
-<h2 id="2">开关作用</h2>
-<p>现在假设有4个开关,通过二进制运算来判断是否打开开关C</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-variable constant_">FLAG_A</span> = <span class="hljs-number">1</span>; <span class="hljs-comment">// 0001  开关A</span>
-<span class="hljs-keyword">var</span> <span class="hljs-variable constant_">FLAG_B</span> = <span class="hljs-number">2</span>; <span class="hljs-comment">// 0010  开关B</span>
-<span class="hljs-keyword">var</span> <span class="hljs-variable constant_">FLAG_C</span> = <span class="hljs-number">4</span>; <span class="hljs-comment">// 0100  开关C</span>
-<span class="hljs-keyword">var</span> <span class="hljs-variable constant_">FLAG_D</span> = <span class="hljs-number">8</span>; <span class="hljs-comment">// 1000  开关D</span>
-
-<span class="hljs-keyword">var</span> flags = <span class="hljs-number">5</span>; <span class="hljs-comment">//二进制的 0101 </span>
-
-<span class="hljs-keyword">if</span>(flags &amp; <span class="hljs-variable constant_">FLAG_C</span>) {
-    <span class="hljs-comment">// ...</span>
-}
-<span class="hljs-comment">// 0101 &amp; 0100 =&gt; 0100 =&gt; 十六进制的 4 =&gt; true</span>
-
-</code></pre>
-<p>现在假设需要打开A、B、D三个开关，我们可以构造一个掩码变量</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">var</span> mask = <span class="hljs-variable constant_">FLAG_A</span> | <span class="hljs-variable constant_">FLAG_B</span> | <span class="hljs-variable constant_">FLAG_D</span>;
-<span class="hljs-comment">// 0001 | 0010 | 1000 =&gt; 1011</span>
-</code></pre>
-<p>有了掩码，二进制或运算可以确保打开指定的开关</p>
-<pre><code class="language-javascript">flags = flags | mask;
-</code></pre>
-<p>上面代码中，计算后得到的flags变量，代表三个开关的二进制位都打开了。<br>
-二进制与运算可以将当前设置中凡是与开关设置不一样的项，全部关闭。</p>
-<pre><code class="language-javascript">flags = flags &amp; mask;
-</code></pre>
-<p>异或运算可以切换（toggle）当前设置，即第一次执行可以得到当前设置的相反值，再执行一次又得到原来的值。</p>
-<pre><code class="language-javascript">flags = flags ^ mask;
-</code></pre>
-<p>二进制否运算可以翻转当前设置，即原设置为0，运算后变为1；原设置为1，运算后变为0。</p>
-<pre><code class="language-javascript">flags = ~flags;
-</code></pre>
+<h3 id="0.2">webview调试</h3>
+<ul>
+<li>真机调试的话，给网页添加vConsole:<a href="https://github.com/Tencent/vConsole/blob/dev/README_CN.md">https://github.com/Tencent/vConsole/blob/dev/README_CN.md</a></li>
+<li>模拟器页面的右下角有个debug按钮，可调试webview网页</li>
+</ul>
 </article>
 					</div>
 					<div class="aside"><ul>
-<li class="level-2"><a href="#1">1 二进制 与 或 运算</a></li><li class="level-2"><a href="#2">2 开关作用</a></li></ul>
+<li class="level-3"><a href="#0.1">0.1 webview注意事项：</a></li><li class="level-3"><a href="#0.2">0.2 webview调试</a></li></ul>
 </div>
 				</div>
 			</div>
