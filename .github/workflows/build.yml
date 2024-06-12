@@ -42,7 +42,7 @@ jobs:
 
       - name: Copy .vitepress/dist to deploy
         run: |
-          cp -r .vitepress/dist/* deploy-branch/
+          cp -rf .vitepress/dist/* deploy-branch/
           cd deploy-branch
           git add .
           git commit -m "deploy"
