@@ -46,7 +46,7 @@ jobs:
           cd deploy-branch
           git add .
           git commit -m "Update .vitepress/dist directory"
-          git push origin deploy
+          git push origin deploy -f
 
       - name: Send email notification
         uses: dawidd6/action-send-mail@v2
