@@ -45,7 +45,7 @@ jobs:
           cp -r .vitepress/dist/* deploy-branch/
           cd deploy-branch
           git add .
-          git commit -m "Update .vitepress/dist directory"
+          git commit -m "deploy"
           git push origin deploy -f
 
       - name: Send email notification
