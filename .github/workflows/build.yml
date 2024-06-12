@@ -1,34 +1,44 @@
-name: 构建
-permissions:
-  contents: write
+name: Build and Deploy
+
 on:
   push:
     branches:
-      - main
       - master
 
-  # pull_request:
-  # branches: [ master,main ]
-
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    # if: github.event.repository.owner.id == github.event.sender.id
 
-    strategy:
-      matrix:
-        node-version: [16.x]
     steps:
-      - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
+      - name: Checkout master branch
+        uses: actions/checkout@v3
         with:
-          version: 8
-      - uses: actions/setup-node@v3
+          ref: master
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: 18
-          cache: 'pnpm'
+          node-version: '18' # 或者你所需要的Node.js版本
+
       - name: Install dependencies
-        run: pnpm install
-      - name: building & deploying...
+        run: npm install
+
+      - name: Build the project
+        run: npm run build
+
+      - name: Checkout dev branch
+        uses: actions/checkout@v3
+        with:
+          ref: deploy
+          path: deploy-branch
+
+      - name: Copy dist to deploy
         run: |
-          pnpm run deploy
+          cp -r dist/* deploy-branch/
+          cd deploy-branch
+          git add .
+          git commit -m "deploy"
+          git push origin deploy -f
+
+      - name: Clean up
+        run: git reset --hard HEAD~1 # 清除工作区中的更改
