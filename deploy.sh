@@ -14,6 +14,8 @@ npm run build  #然后执行打包命令
 cd .vitepress/dist  #进到dist目录
 
 git init  #执行这些git命令
+git config --local user.email "chinjiaqing@qq.com"
+git config --local user.name "chinjiaqing"
 git add -A
 git commit -m 'deploy'
 
