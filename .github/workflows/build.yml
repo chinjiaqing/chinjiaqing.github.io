@@ -57,7 +57,7 @@ jobs:
           password: ${{ secrets.FROM_EMAIL_TOKEN }}
           subject: "Deploy success！"
           body: "The deploy branch has been updated."
-          from: "chin jiaqing"
+          from: "github"
           to: ${{ secrets.TO_EMAIL_ADDRESS }}
 
       - name: Clean up
