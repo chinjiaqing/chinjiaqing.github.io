@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: Build and deploy
 
 on:
   push:
@@ -26,18 +26,29 @@ jobs:
       - name: Build the project
         run: npm run build
 
-      - name: Checkout dev branch
+      - name: Checkout deploy branch
         uses: actions/checkout@v3
         with:
           ref: deploy
           path: deploy-branch
 
-      - name: Copy dist to deploy
+      - name: Configure Git
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+      - name: Copy .vitepress/dist to deploy
         run: |
           cp -r .vitepress/dist/* deploy-branch/
           cd deploy-branch
           git add .
-          git commit -m "deploy"
+          git commit -m "Update .vitepress/dist directory"
+
+      - name: Push changes to deploy branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd deploy-branch
           git push origin deploy -f
 
       - name: Clean up
