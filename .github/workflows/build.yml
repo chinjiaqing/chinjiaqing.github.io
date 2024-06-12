@@ -31,7 +31,7 @@ jobs:
         run: pnpm install
       - name: building & deploying...
         run: |
-          pnpm deploy
+          pnpm run deploy
       - name: 更新数据
         uses: JamesIves/github-pages-deploy-action@4.0.0
         with:
