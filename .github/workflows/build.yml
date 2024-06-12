@@ -55,4 +55,4 @@ jobs:
           git push origin deploy -f
 
       - name: Clean up
-        run: git reset --hard HEAD~1 # 清除工作区中的更改
+        run: git reset --hard HEAD^ # 清除工作区中的更改
