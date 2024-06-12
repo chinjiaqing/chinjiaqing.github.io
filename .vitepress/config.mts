@@ -11,7 +11,7 @@ const Navs = [
 ]
 // 读取文档根目录的文件树
 const result = dree.scan(DocPath, {
-    exclude: /index.md/,
+    exclude: [/index.md/,'/public'], //排除每个文件下的index.md 和 public 静态资源目录
     size: false,
     hash: false,
     extensions: ["md"]
@@ -33,7 +33,7 @@ topDirs.forEach(item => {
 
 // 生成导航栏的自定义侧边栏
 function parseSlideBar(children, side) {
-    if (!children.length) return
+    if (!children || children.length === 0) return
     children.forEach(child => {
         let childRow = {
             text: child.name.replace(/\.md$/, ""),
@@ -59,6 +59,7 @@ export default defineConfig({
     lastUpdated: true,
     themeConfig: {
         // https://vitepress.dev/reference/default-theme-config
+        logo:"/avatar.png",
         nav: Navs,
         sidebar: SideBar,
         socialLinks: [
