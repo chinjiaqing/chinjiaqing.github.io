@@ -4,6 +4,7 @@
   "description": "some writing about front-end.",
   "main": "index.js",
   "scripts": {
+    "deploy": "bash deploy.sh",
     "dev": "vitepress dev",
     "build": "vitepress build",
     "preview": "vitepress preview"
