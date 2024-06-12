@@ -35,15 +35,18 @@ jobs:
           ref: deploy
           path: deploy-branch
 
-      - name: Configure Git
+      - name: Clean deploy branch directory
         run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          rm -rf deploy-branch/*
 
       - name: Copy .vitepress/dist to deploy
+        run: cp -r .vitepress/dist/* deploy-branch/
+
+      - name: Configure Git
         run: |
-          cp -rf .vitepress/dist/* deploy-branch/
           cd deploy-branch
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
           git add .
           git commit -m "deploy"
           git push origin deploy -f
@@ -61,6 +64,4 @@ jobs:
           to: ${{ secrets.TO_EMAIL_ADDRESS }}
 
       - name: Clean up
-        run: |
-          cd ..
-          rm -rf deploy-branch
+        run: rm -rf deploy-branch
