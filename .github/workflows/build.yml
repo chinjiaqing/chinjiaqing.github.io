@@ -21,7 +21,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: '18' # 使用 Node.js 18 版本
 
       - name: Install dependencies
         run: npm install
@@ -45,8 +45,20 @@ jobs:
           cp -r .vitepress/dist/* deploy-branch/
           cd deploy-branch
           git add .
-          git commit -m "deploy"
-          git push origin deploy -f
+          git commit -m "Update .vitepress/dist directory"
+          git push origin deploy
+
+      - name: Send email notification
+        uses: dawidd6/action-send-mail@v2
+        with:
+          server_address: smtp.163.com
+          server_port: 465
+          username: ${{ secrets.FROM_EMAIL_ADDRESS }}
+          password: ${{ secrets.FROM_EMAIL_TOKEN }}
+          subject: "Deploy success！"
+          body: "The deploy branch has been updated."
+          from: ""
+          to: ${{ secrets.TO_EMAIL_ADDRESS }}
 
       - name: Clean up
         run: rm -rf deploy-branch
