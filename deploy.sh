@@ -5,8 +5,6 @@
 # 忽略错误
 set -e  #有错误抛出错误
 
-rm -rf .vitepress/dist  #删除dist文件夹
-
 # 构建
 npm run build  #然后执行打包命令
 
@@ -14,8 +12,7 @@ npm run build  #然后执行打包命令
 cd .vitepress/dist  #进到dist目录
 
 git init  #执行这些git命令
-git config --local user.email "chinjiaqing@qq.com"
-git config --local user.name "chinjiaqing"
+
 git add -A
 git commit -m 'deploy'
 
