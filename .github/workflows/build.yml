@@ -1,4 +1,4 @@
-name: Build and deploy
+name: Build and Sync .vitepress/dist to deploy
 
 on:
   push:
@@ -21,7 +21,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18' # 或者你所需要的Node.js版本
+          node-version: '18'
 
       - name: Install dependencies
         run: npm install
@@ -45,14 +45,8 @@ jobs:
           cp -r .vitepress/dist/* deploy-branch/
           cd deploy-branch
           git add .
-          git commit -m "Update .vitepress/dist directory"
-
-      - name: Push changes to deploy branch
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          cd deploy-branch
-          git push origin deploy -f
+          git commit -m "deploy"
+          git push origin deploy
 
       - name: Clean up
-        run: git reset --hard HEAD^ # 清除工作区中的更改
+        run: rm -rf deploy-branch
