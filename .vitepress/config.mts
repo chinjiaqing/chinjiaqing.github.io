@@ -1,48 +1,71 @@
 import {defineConfig} from 'vitepress'
-import path from "path"
-import * as fs from 'fs';
 import dree from 'dree';
 
-console.log('dree',dree.default)
+// 文档根目录
 const DocPath = "./docs"
+// 侧边栏
 const SideBar = {}
-
+// 导航栏
+const Navs = [
+    {text: "首页", link: "/"}
+]
+// 读取文档根目录的文件树
 const result = dree.scan(DocPath, {
-    exclude:/index.md/,
-    size:false,
-    hash:false,
-    extensions:["md"]
+    exclude: /index.md/,
+    size: false,
+    hash: false,
+    extensions: ["md"]
+})
+// 读取文档根目录下的一级目录 生成导航栏和侧边栏的一级属性
+const topDirs = result.children.filter(v => v.type === 'directory')
+topDirs.forEach(item => {
+    Navs.push({
+        text: item.name,
+        link: "/" + item.relativePath
+    })
+    const sideRowData = {
+        text: item.name,
+        items: []
+    }
+    parseSlideBar(item.children, sideRowData)
+    SideBar[`/${item.name}/`] = [sideRowData]
 })
 
-function parseSlideBar(children,side) {
-    if(!children.length) return
-    children.forEach(child=>{
-        if(child.type === 'directory') {
+// 生成导航栏的自定义侧边栏
+function parseSlideBar(children, side) {
+    if (!children.length) return
+    children.forEach(child => {
+        let childRow = {
+            text: child.name.replace(/\.md$/, ""),
+            items: []
         }
-        if(child.type === 'file') {
-
+        if (child.type === 'directory') {
+            parseSlideBar(child.children, childRow)
         }
+        if (child.type === 'file') {
+            if (!side.items) side.items = []
+            childRow.link = "/" + child.relativePath.replace(/\\/g, "/").replace(/\.md$/, "") + "/"
+        }
+        side.items.push(childRow)
     })
 }
-parseSlideBar(result.children,SideBar)
-console.log('result',JSON.stringify(result))
+
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-    title: "Chin Jiaqing",
+    title: "季夏拾陆",
     description: "some writing.",
     srcDir: DocPath,
     lang: 'zh-CN',
+    lastUpdated: true,
     themeConfig: {
         // https://vitepress.dev/reference/default-theme-config
-        nav: [
-            {text: '首页', link: '/'},
-            {text: 'JavaScript', link: '/JavaScript'}
-        ],
-
+        nav: Navs,
         sidebar: SideBar,
-
         socialLinks: [
             {icon: 'github', link: 'https://github.com/chinjiaqing'}
-        ]
+        ],
+        search:{
+            provider:'local'
+        }
     }
 })

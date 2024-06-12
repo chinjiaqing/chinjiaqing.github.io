@@ -3,13 +3,13 @@
 layout: home
 
 hero:
-  name: "Chin Jiaqing"
-  text: "季夏拾陆"
-  tagline: "some writing"
+  name: "季夏拾陆"
+  text: "Chin Jiaqing`s blog"
+  tagline: "some writing about front-end."
   actions:
     - theme: brand
       text: 个人简历
-      link: /markdown-examples
+      link: /about
     - theme: alt
       text: GitHub
       link: https://github.com/chinjiaqing
