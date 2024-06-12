@@ -61,4 +61,6 @@ jobs:
           to: ${{ secrets.TO_EMAIL_ADDRESS }}
 
       - name: Clean up
-        run: rm -rf deploy-branch
+        run: |
+          cd ..
+          rm -rf deploy-branch
