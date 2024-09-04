@@ -1,0 +1,29 @@
+$BlockSep: '-' !default; // namespace或前缀 与 block的连接符
+$ElemSep: '__' !default; // block与 element的连接符
+$ModSep: '--' !default; // element与modifier的连接符
+$NAMESPACE: '' !default; // 定义命名空间,即前缀 如 el-button
+
+@mixin B($block) {
+  $B: if($NAMESPACE != '', #{$NAMESPACE + $BlockSep + $block}, $block);
+  .#{$B} {
+    @content;
+  }
+}
+
+@mixin E($ele) {
+  $selector: &;
+  @at-root {
+    #{$selector + $ElemSep + $ele} {
+      @content;
+    }
+  }
+}
+
+@mixin M($m) {
+  $selector: &;
+  @at-root {
+    #{$selector + $ModSep + $m} {
+      @content;
+    }
+  }
+}
