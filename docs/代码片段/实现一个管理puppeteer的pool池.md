@@ -28,7 +28,7 @@ function createContextPool(){
         // 创建
         create: async ()=>{
             if(!PPTM.browser) {
-                await PPT.create()
+                await PPTM.create()
             }
             const context = await PPTM.browser.createBrowserContext()
             
