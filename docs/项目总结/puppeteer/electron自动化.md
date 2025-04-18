@@ -98,7 +98,7 @@ export function getPage(browser: Browser, wind: BrowserWindow): Promise<Page | n
 		await wind.webContents.loadURL("about:blank");
 	}
 
-	const uid = Math.random(); // 生产一个唯一标识
+	const uid:string = Math.random() + ''; // 生产一个唯一标识
 	await wind.webContents.executeJavaScript(`window.__UNIQ_ID__="${uid}"`); //将全局变量写入页面
 	const pages = await browser.pages(); // 获取puppeteer的全部页面
 	const ids = await Promise.all(
