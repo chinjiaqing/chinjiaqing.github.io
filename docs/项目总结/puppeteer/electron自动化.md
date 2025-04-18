@@ -51,7 +51,7 @@ interface ElectronDebugJsonItem {
 	webSocketDebuggerUrl: string;
 }
 
-const getElectronDebugJsonList = async (): Promise<ElectronDebugJsonItem> => {
+const getElectronDebugJsonList = async (): Promise<ElectronDebugJsonItem[]> => {
 	new Promise((resolve, reject) => {
 		let json = "";
 		const request = http.request(`http://${DEBUG_HOST}:${DEBUG_PORT}/json/list`, (response) => {
