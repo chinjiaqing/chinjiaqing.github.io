@@ -59,11 +59,15 @@ function parseSlideBar(children, side) {
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
     title: "季夏拾陆",
-    description: "some writing.",
+    description: "随便写写，有关代码，有关生活。",
     srcDir: DocPath,
     lang: "zh-CN",
-    lastUpdated: true,
+    lastUpdated: false,
     themeConfig: {
+        docFooter:{
+            prev:false,
+            next:false
+        },
         // https://vitepress.dev/reference/default-theme-config
         logo: "/avatar.jpg",
         nav: NavItems,
@@ -72,5 +76,7 @@ export default defineConfig({
         search: {
             provider: "local",
         },
+        outline:2,
+        outlineTitle:'目录'
     },
 });

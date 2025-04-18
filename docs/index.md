@@ -4,8 +4,8 @@ layout: home
 
 hero:
   name: "季夏拾陆"
-  text: "Chin Jiaqing`s blog"
-  tagline: "some writing about front-end."
+  text: ""
+  tagline: "随便写写，有关代码，有关生活。"
   actions:
     - theme: brand
       text: 个人简历
