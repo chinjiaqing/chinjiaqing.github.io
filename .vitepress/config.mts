@@ -63,6 +63,15 @@ export default defineConfig({
     srcDir: DocPath,
     lang: "zh-CN",
     lastUpdated: false,
+    head:[
+        [
+            'link',
+            {
+                rel:'stylesheet',
+                href:'https://cn.windfonts.com/wenfeng/fonts/misa/regular/web/index.css'
+            }
+        ]
+    ],
     themeConfig: {
         docFooter:{
             prev:false,
