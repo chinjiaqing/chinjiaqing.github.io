@@ -13,8 +13,14 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@iconify-json/solar": "^1.2.2",
+    "@types/node": "^24.0.14",
+    "@unocss/transformer-directives": "^66.3.3",
+    "@unocss/vite": "^66.3.3",
+    "chalk": "^5.4.1",
     "dree": "^4.8.6",
     "sass": "^1.78.0",
+    "unocss": "^66.3.3",
     "vitepress": "^1.6.3"
   }
 }

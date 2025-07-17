@@ -1,6 +1,6 @@
 import {defineConfig} from 'vitepress'
 import dree from 'dree';
-
+import viteConfig from './vite.config';
 interface NavSubItem {
     text: string
     link?: string
@@ -86,6 +86,8 @@ export default defineConfig({
             provider: "local",
         },
         outline:2,
-        outlineTitle:'目录'
+        outlineTitle:'目录',
+        
     },
+    vite:viteConfig
 });
