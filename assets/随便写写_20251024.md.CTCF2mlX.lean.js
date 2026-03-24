@@ -1,1 +1,0 @@
-import{_ as e,c as p,o,a2 as a}from"./chunks/framework.CHomSxuB.js";const m=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"随便写写/20251024.md","filePath":"随便写写/20251024.md"}'),_={name:"随便写写/20251024.md"};function l(i,t,r,s,n,c){return o(),p("div",null,t[0]||(t[0]=[a("",9)]))}const f=e(_,[["render",l]]);export{m as __pageData,f as default};
